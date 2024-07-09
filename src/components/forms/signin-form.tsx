@@ -21,6 +21,8 @@ import { SigninSchema, signinSchema } from "@/schemas";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: "500",
+  display: "swap",
+  variable: "--font-poppins",
 });
 const SigninForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);

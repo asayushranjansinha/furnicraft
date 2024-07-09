@@ -24,6 +24,8 @@ const NotificationBar = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          id="notification-bar"
+          className="sticky top-14 left-0 right-0 z-[50]"
           initial={{ height: "auto", opacity: 1 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
@@ -32,7 +34,6 @@ const NotificationBar = () => {
         >
           <div
             ref={ref}
-            id="notification-bar"
             className="bg-secondary py-2 px-4"
             role="alert"
             aria-live="polite"

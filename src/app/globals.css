@@ -87,19 +87,28 @@ body,
   .headline-4 {
     @apply font-poppins text-headline-4 font-medium;
   }
-  .body-2{
+
+  .body-2 {
     @apply font-inter text-body-2;
   }
-  .body-2-semibold{
+
+  .body-2-semibold {
     @apply font-inter text-body-2 font-semibold;
   }
-  .logo{
+
+  .logo {
     @apply font-monainn text-2xl;
   }
-  .caption-1{
+
+  .caption-1 {
     @apply font-inter text-caption-1 font-semibold;
   }
-  .caption-2{
+
+  .caption-2 {
     @apply font-inter text-caption-2 font-semibold;
+  }
+
+  .button-xs {
+    @apply font-inter text-button-xs font-medium;
   }
 }

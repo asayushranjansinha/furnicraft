@@ -4,4 +4,5 @@ export const monainn = LocalFont({
   weight: "400",
   variable: "--font-monainn",
   display: "swap",
+  preload: true,
 });

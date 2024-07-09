@@ -28,6 +28,7 @@ const config = {
         'body-2': ['16px', { lineHeight: '26px', letterSpacing: '0px' }],
         'caption-1': ['14px', { lineHeight: '22px', letterSpacing: '0px' }],
         'caption-2': ['12px', { lineHeight: '20px', letterSpacing: '0px' }],
+        'button-xs': ['14px', { lineHeight: '24px', letterSpacing: '0px' }],
       },
       colors: {
         border: "hsl(var(--border))",
