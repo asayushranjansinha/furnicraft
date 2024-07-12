@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { Space_Grotesk } from "next/font/google";
 import NavbarMobile from "./navbar-mobile";
+import CartFlyout from "./cart-flyout";
 
 const space_grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -20,12 +21,12 @@ const Navbar = () => {
   return (
     <nav
       id="navbar"
-      className="h-14 py-2 sticky top-0 left-0 right-0 border-b z-[100] bg-white"
+      className="sticky top-0 left-0 right-0 border-b z-40 bg-white"
       aria-label="Main Navigation"
     >
       <div
         id="navbar-container"
-        className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 flex justify-between items-center"
+        className="h-16 py-2 max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 flex justify-between items-center"
       >
         <div className="lg:hidden flex items-center space-x-1">
           <NavbarMobile />
@@ -141,7 +142,7 @@ const Navbar = () => {
           <li id="nav-cart" role="none">
             <Button
               variant="ghost"
-              className="space-x-1"
+              className="sm:flex hidden space-x-1"
               aria-label="Shopping Cart"
               role="button"
             >
@@ -152,7 +153,11 @@ const Navbar = () => {
               >
                 2
               </div>
+              <span className="sr-only">2 items in the cart</span>
             </Button>
+            <div className="sm:hidden">
+              <CartFlyout />
+            </div>
           </li>
         </ul>
       </div>

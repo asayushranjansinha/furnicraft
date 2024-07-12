@@ -25,7 +25,7 @@ const NotificationBar = () => {
       {isVisible && (
         <motion.div
           id="notification-bar"
-          className="sticky top-14 left-0 right-0 z-[50]"
+          className="sticky top-[64px] left-0 right-0 z-30"
           initial={{ height: "auto", opacity: 1 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}

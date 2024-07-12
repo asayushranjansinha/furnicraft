@@ -12,15 +12,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Divide as Hamburger } from "hamburger-react";
+
 import { Heart, Menu, Search, ShoppingBag } from "lucide-react";
 import { Button } from "../ui/button";
 import Logo from "@/components/shared/logo";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useState } from "react";
 
 const NavbarMobile = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger className="flex items-center h-full">
         <Button
           asChild
@@ -29,13 +33,13 @@ const NavbarMobile = () => {
           role="button"
           aria-label="Open Navigation Menu"
         >
-          <Menu size={24} />
+          <Hamburger toggled={isOpen} toggle={setIsOpen} size={20} />
         </Button>
       </SheetTrigger>
       <SheetContent
         side={"left"}
         onOpenAutoFocus={(event) => event.preventDefault()}
-        className="flex flex-col px-4 py-3  overflow-hidden" // Added overflow-hidden here
+        className="flex flex-col px-4 py-3 overflow-hidden"
       >
         <SheetHeader className="py-1 border-b">
           <Logo className="text-2xl text-start" />
@@ -67,14 +71,18 @@ const NavbarMobile = () => {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="products">
-              <AccordionTrigger className="button-xs">Products</AccordionTrigger>
+              <AccordionTrigger className="button-xs">
+                Products
+              </AccordionTrigger>
               <AccordionContent>
                 Yes. It&apos;s animated by default, but you can disable it if
                 you prefer.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="contact-us">
-              <AccordionTrigger className="button-xs">Contact Us</AccordionTrigger>
+              <AccordionTrigger className="button-xs">
+                Contact Us
+              </AccordionTrigger>
               <AccordionContent>
                 Yes. It&apos;s animated by default, but you can disable it if
                 you prefer.
