@@ -9,6 +9,15 @@ body,
   box-sizing: border-box;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #000 !important;
+}
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -88,6 +97,13 @@ body,
     @apply font-poppins text-headline-4 font-medium;
   }
 
+  .headline-5 {
+    @apply font-poppins text-headline-5 font-medium;
+  }
+  .headline-6 {
+    @apply font-poppins text-headline-6 font-medium;
+  }
+
   .body-2 {
     @apply font-inter text-body-2;
   }
@@ -101,7 +117,7 @@ body,
   }
 
   .caption-1 {
-    @apply font-inter text-caption-1 font-semibold;
+    @apply font-inter text-caption-1;
   }
 
   .caption-2 {
@@ -110,5 +126,17 @@ body,
 
   .button-xs {
     @apply font-inter text-button-xs font-medium;
+  }
+
+  .button-sm {
+    @apply font-medium font-inter text-button-sm;
+  }
+
+  .hairline-1 {
+    @apply font-bold font-inter text-hairline-1;
+  }
+
+  .headline-7 {
+    @apply font-medium font-poppins text-headline-7;
   }
 }
