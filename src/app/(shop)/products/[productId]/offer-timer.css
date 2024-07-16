@@ -1,0 +1,87 @@
+.flip-clock {
+    /* Duration of the flip animation */
+    --fcc-flip-duration: 0.5s;
+  
+    /* Width of each digit block */
+    --fcc-digit-block-width: 36px;
+  
+    /* Height of each digit block */
+    --fcc-digit-block-height: 50px;
+  
+    /* Font size of the digits */
+    --fcc-digit-font-size: 24px;
+  
+    /* Color of the digits */
+    --fcc-digit-color: #fff;
+  
+    /* Font size of the labels (Days, Hours, etc.) */
+    --fcc-label-font-size: 14px;
+  
+    /* Color of the labels */
+    --fcc-label-color: #000;
+  
+    /* Background color of the digit blocks */
+    --fcc-background: #2DD4BF;
+  
+    /* Color of the divider line in digit blocks */
+    --fcc-divider-color: #fff;
+  
+    /* Height of the divider line in digit blocks */
+    --fcc-divider-height: 1px;
+  
+    /* Size of the separators between digit groups */
+    --fcc-separator-size: 5px;
+  
+    /* Color of the separators */
+    --fcc-separator-color: #000;
+  }
+  
+  /* Styles for screens 380px and thinner */
+  @media (max-width: 380px) {
+    .flip-clock {
+      --fcc-digit-block-width: 30px;    
+      --fcc-digit-block-height: 50px;
+    }
+  }
+  @media (min-width: 480px) {
+    .flip-clock {
+      --fcc-digit-block-width: 40px;
+      --fcc-digit-block-height: 60px;
+      --fcc-digit-font-size: 30px;
+      --fcc-label-font-size: 12px;
+      --fcc-separator-size: 6px;
+    }
+  }
+  
+  /* Styles for screens 640px and wider */
+  @media (min-width: 640px) {
+    .flip-clock {
+      --fcc-digit-block-width: 55px;
+      --fcc-digit-block-height: 65px;
+      --fcc-digit-font-size: 32px;
+      --fcc-label-font-size: 13px;
+      --fcc-separator-size: 7px;
+    }
+  }
+  
+  /* Styles for screens 768px and wider */
+  @media (min-width: 768px) {
+    .flip-clock {
+      --fcc-digit-block-width: 60px;
+      --fcc-digit-block-height: 70px;
+      --fcc-digit-font-size: 40px;
+      --fcc-label-font-size: 16px;
+      --fcc-separator-size: 8px;
+    }
+  }
+  
+  /* Styles for screens 1024px and wider */
+  @media (min-width: 1024px) {
+    .flip-clock {
+      --fcc-digit-block-width: 45px;
+      --fcc-digit-block-height: 75px;
+      --fcc-digit-font-size: 36px;
+      --fcc-label-font-size: 15px;
+      --fcc-separator-size: 9px;
+    }
+  }
