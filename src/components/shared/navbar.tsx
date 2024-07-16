@@ -1,15 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import Logo from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
-import { Search, ShoppingBag, User } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+import { Search, ShoppingBag, User } from "lucide-react";
 import { Space_Grotesk } from "next/font/google";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import NavbarMobile from "./navbar-mobile";
-import CartFlyout from "./cart-flyout";
 
 const space_grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -21,14 +20,11 @@ const Navbar = () => {
   return (
     <nav
       id="navbar"
-      className="sticky top-0 left-0 right-0 border-b z-40 bg-white"
+      className="relative z-50 bg-white shadow-sm"
       aria-label="Main Navigation"
     >
-      <div
-        id="navbar-container"
-        className="h-16 py-2 max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 flex justify-between items-center"
-      >
-        <div className="lg:hidden flex items-center space-x-1">
+      <div id="navbar-container" className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-1 lg:py-2 flex justify-between items-center">
+        <div className="lg:hidden flex items-center gap-1">
           <NavbarMobile />
           <Logo className="text-xl" />
         </div>
@@ -142,22 +138,21 @@ const Navbar = () => {
           <li id="nav-cart" role="none">
             <Button
               variant="ghost"
-              className="sm:flex hidden space-x-1"
               aria-label="Shopping Cart"
               role="button"
+              asChild
             >
-              <ShoppingBag size={24} className="text-black" />
-              <div
-                className="bg-black text-white h-6 w-6 border rounded-full shrink-0 flex items-center justify-center font-bold"
-                aria-label="Cart Items Count"
-              >
-                2
-              </div>
-              <span className="sr-only">2 items in the cart</span>
+              <Link href={"/cart"} className="space-x-1">
+                <ShoppingBag size={24} className="text-black" />
+                <div
+                  className="bg-black text-white h-6 w-6 border rounded-full shrink-0 flex items-center justify-center font-bold"
+                  aria-label="Cart Items Count"
+                >
+                  2
+                </div>
+                <span className="sr-only">2 items in the cart</span>
+              </Link>
             </Button>
-            <div className="sm:hidden">
-              <CartFlyout />
-            </div>
           </li>
         </ul>
       </div>

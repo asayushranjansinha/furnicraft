@@ -13,7 +13,7 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section className="relative max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 pb-10 sm:pb-12 lg:pb-16">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8">
       <Carousel
         className="w-full h-full"
         plugins={[
@@ -29,7 +29,7 @@ const HeroSection = () => {
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index}>
-              <div className="h-[304px] md:[440px] lg:h-[500px] w-full relative">
+              <div className="h-[304px] md:h-[360px] w-full relative">
                 <Image
                   src={"/assets/images/banner1.png"}
                   alt="Banner"
@@ -54,17 +54,13 @@ const HeroSection = () => {
         <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 h-8 w-8" />
       </Carousel>
 
-      <div className="flex flex-wrap items-center justify-between mt-4">
-        <h2
-          className={
-            "lg:w-1/2 headline-4 lg:text-7xl lg:leading-[76px] lg:tracking-[-2px] font-poppins font-medium"
-          }
-        >
+      <div className="mt-8 space-y-3 lg:flex lg:items-center lg:justify-between">
+        <h2 className="w-full lg:w-1/2 text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight md:leading-snug lg:leading-[1.1] xl:leading-[76px] tracking-tight lg:tracking-[-1px] xl:tracking-[-2px] font-poppins font-medium">
           Simply Unique/ Simply Better.
         </h2>
-        <p className="lg:w-1/2 caption-1 lg:body-2-semibold text-neutral-700 text-wrap">
-          Furnicraft is a gift & decorations store based in HCMC, <br />{" "}
-          Vietnam. Est since 2019.
+        <p className="w-full lg:w-1/2 text-lg md:text-xl lg:text-2xl font-inter text-neutral-700 lg:pl-8">
+          Furnicraft is a gift & decorations store based in HCMC, Vietnam. Est
+          since 2019.
         </p>
       </div>
     </section>

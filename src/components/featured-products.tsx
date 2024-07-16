@@ -8,7 +8,7 @@ const FeaturedProducts = () => {
   return (
     <section
       id="featured-products"
-      className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6"
+      className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8"
     >
       <div className="grid lg:grid-cols-2 gap-6">
         <div className="h-[23rem] lg:h-[34rem] bg-secondary relative p-8">

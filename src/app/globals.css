@@ -9,6 +9,10 @@ body,
   box-sizing: border-box;
 }
 
+:root {
+  --header-height: 104px;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -140,3 +144,4 @@ input:-webkit-autofill:active {
     @apply font-medium font-poppins text-headline-7;
   }
 }
+

@@ -25,11 +25,10 @@ const NavbarMobile = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger className="flex items-center h-full">
+      <SheetTrigger className="flex items-center h-full -ml-3">
         <Button
           asChild
           variant="ghost"
-          className="h-fit w-fit p-3"
           role="button"
           aria-label="Open Navigation Menu"
         >
@@ -37,7 +36,7 @@ const NavbarMobile = () => {
         </Button>
       </SheetTrigger>
       <SheetContent
-        side={"left"}
+        side={"right"}
         onOpenAutoFocus={(event) => event.preventDefault()}
         className="flex flex-col px-4 py-3 overflow-hidden"
       >

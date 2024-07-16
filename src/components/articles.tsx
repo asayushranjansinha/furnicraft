@@ -3,14 +3,17 @@ import LinkButton from "./shared/link-button";
 
 const Articles = () => {
   return (
-    <section id="articles" className="py-10 sm:py-12 lg:py-16">
-      <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 space-y-10">
+    <section
+      id="articles"
+      className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8"
+    >
+      <div>
         <div className="flex justify-between items-end">
           <h2 className="headline-5  ">Articles</h2>
           <LinkButton href="#" title="More Articles" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-6 sm:py-8">
           <div className="col-span-1 space-y-4">
             <div className="relative h-[18rem]">
               <Image

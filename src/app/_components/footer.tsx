@@ -1,6 +1,6 @@
+import Logo from "@/components/shared/logo";
+import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import Logo from "./shared/logo";
-import { Separator } from "./ui/separator";
 
 const Footer = () => {
   return (
@@ -39,7 +39,10 @@ const Footer = () => {
             <Link href="/privacy-policy" className="caption-1 hover:underline">
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="caption-1 hover:underline">
+            <Link
+              href="/terms-of-service"
+              className="caption-1 hover:underline"
+            >
               Terms of Service
             </Link>
           </nav>
@@ -54,5 +57,4 @@ const Footer = () => {
     </footer>
   );
 };
-
 export default Footer;

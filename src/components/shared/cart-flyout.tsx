@@ -13,7 +13,7 @@ import Image from "next/image";
 const CartFlyout = () => {
   return (
     <Sheet>
-      <SheetTrigger className="sm:hidden h-full flex items-center" asChild>
+      <SheetTrigger className="h-full flex items-center" asChild>
         <Button
           variant="ghost"
           className="space-x-1"
