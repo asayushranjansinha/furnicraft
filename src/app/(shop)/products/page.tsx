@@ -35,6 +35,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import StarRating from "@/components/shared/star-rating";
+import Link from "next/link";
 
 const ProductListing = () => {
   const [viewOption, setViewOption] = useState("grid");
@@ -463,7 +464,7 @@ const ProductListing = () => {
     switch (viewOption) {
       case "grid":
         return (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <Link href="/products/abcde" className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {products.map((product) => {
               const discount = (product.price * product.currentDiscount) / 100;
               const newPrice = product.price - discount;
@@ -519,12 +520,12 @@ const ProductListing = () => {
                 </Card>
               );
             })}
-          </div>
+          </Link>
         );
 
       case "list":
         return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <Link href="/products/abcde" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {products.map((product) => {
               const discount = (product.price * product.currentDiscount) / 100;
               const newPrice = product.price - discount;
@@ -593,12 +594,12 @@ const ProductListing = () => {
                 </Card>
               );
             })}
-          </div>
+          </Link>
         );
 
       case "compact":
         return (
-          <div className="space-y-2">
+          <Link href="/products/abcde" className="space-y-2">
             {products.map((product) => (
               <Card
                 key={product.id}
@@ -652,12 +653,12 @@ const ProductListing = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </Link>
         );
 
       case "detailed":
         return (
-          <div className="space-y-8">
+          <Link href="/products/abcde" className="space-y-8">
             {products.map((product) => (
               <Card key={product.id} className="overflow-hidden">
                 <CardHeader className="pb-4">
@@ -739,7 +740,7 @@ const ProductListing = () => {
                 </CardFooter>
               </Card>
             ))}
-          </div>
+          </Link>
         );
     }
   };

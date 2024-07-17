@@ -59,24 +59,15 @@ const NavbarMobile = () => {
         </div>
         <div className="h-full overflow-x-hidden overflow-y-auto">
           <Accordion type="single" collapsible>
-            <AccordionItem value="home" asChild>
-              <AccordionTrigger className="button-xs">Home</AccordionTrigger>
-            </AccordionItem>
-            <AccordionItem value="shop">
-              <AccordionTrigger className="button-xs">Shop</AccordionTrigger>
-              <AccordionContent>
-                Yes. It comes with default styles that matches the other
-                components&apos; aesthetic.
-              </AccordionContent>
+            <AccordionItem value="home">
+              <Link href="/">
+                <AccordionTrigger>Home</AccordionTrigger>
+              </Link>
             </AccordionItem>
             <AccordionItem value="products">
-              <AccordionTrigger className="button-xs">
-                Products
-              </AccordionTrigger>
-              <AccordionContent>
-                Yes. It&apos;s animated by default, but you can disable it if
-                you prefer.
-              </AccordionContent>
+              <Link href="/products">
+                <AccordionTrigger>Products</AccordionTrigger>
+              </Link>
             </AccordionItem>
             <AccordionItem value="contact-us">
               <AccordionTrigger className="button-xs">

@@ -4,12 +4,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Heart, Minus, MoveRight, Plus } from "lucide-react";
+import { Heart, Minus, MoveRight, Plus, ShoppingCart } from "lucide-react";
 import { FAQs } from "./faq-section";
 import ProductCarousel from "./product-carousel";
 import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
 import "@leenguyen/react-flip-clock-countdown/dist/index.css";
 import OfferTimer from "./offer-timer";
+import { Badge } from "@/components/ui/badge";
 
 const reviews = [
   {
@@ -57,7 +58,40 @@ const reviews = [
   },
 ];
 
+const PRODUCTDETAILS = {
+  id: 18,
+  name: "Tray Table",
+  price: 99.99,
+  description:
+    "Buy one or buy a few and make every space where you sit more convenient. Light and easy to move around with removable tray top, handy for serving snacks.",
+  category: "Furniture",
+  currentDiscount: 20,
+  brand: "ModernLiving",
+  stock: 25,
+  rating: 4.4,
+  images: [
+    "/assets/images/tray-table-1.jpg",
+    "/assets/images/tray-table-2.jpg",
+    "/assets/images/tray-table-3.jpg",
+    "/assets/images/tray-table-4.jpg",
+    "/assets/images/tray-table-5.jpg",
+    "/assets/images/tray-table-6.jpg",
+    "/assets/images/tray-table-7.jpg",
+    "/assets/images/tray-table-8.jpg",
+    "/assets/images/tray-table-9.jpg",
+    "/assets/images/tray-table-10.jpg",
+  ],
+  weight: 4,
+  sku: "LU-FL-018",
+  reviews: 85,
+};
+
 const ProductDetailPage = () => {
+  const discountedPrice = (
+    (PRODUCTDETAILS.price * (100 - PRODUCTDETAILS.currentDiscount)) /
+    100
+  ).toFixed(2);
+
   return (
     <div className="overflow-hidden">
       {/* Product section */}
@@ -65,51 +99,86 @@ const ProductDetailPage = () => {
         <ProductCarousel />
 
         {/* Detail */}
-        <section className="flex flex-col justify-center space-y-3 py-4 sm:py-6">
-          {/* Reviews and ratings */}
-          <StarRating
-            rating={5}
-            numberOfReviews={11}
-            aria-label="Product Rating"
-          />
-
-          <h1 className="headline-5">Tray Table</h1>
-
-          <p className="body-2 text-muted-foreground">
-            Buy one or buy a few and make every space where you sit more
-            convenient. Light and easy to move around with removable tray top,
-            handy for serving snacks.
-          </p>
-
-          <div className="flex items-center flex-wrap headline-6">
-            <span>$199</span>
-            <span className="line-through ml-2 text-muted-foreground">
-              $499
-            </span>
+        <section className="flex flex-col justify-center space-y-6 py-4 sm:py-6">
+          <div>
+            <h1 className="headline-5">
+              {PRODUCTDETAILS.name}
+            </h1>
+            <div className="flex items-center mt-2">
+              <StarRating
+                rating={PRODUCTDETAILS.rating}
+                numberOfReviews={PRODUCTDETAILS.reviews}
+              />
+            </div>
           </div>
+
+          <div className="flex items-center space-x-4 headline-6">
+            <span className="">
+              ${discountedPrice}
+            </span>
+            <span className="text-muted-foreground line-through">
+              ${PRODUCTDETAILS.price.toFixed(2)}
+            </span>
+            <Badge variant="destructive" className="caption-2 font-semibold">
+              {PRODUCTDETAILS.currentDiscount}% OFF
+            </Badge>
+          </div>
+
+          <p className="body-2 text-muted-foreground">{PRODUCTDETAILS.description}</p>
+
           <Separator />
 
           <OfferTimer />
 
-          <div className="flex flex-row items-center space-x-3">
-            <div className="flex items-center gap-0 bg-secondary rounded-md w-fit">
-              <Button variant="ghost" aria-label="Decrease Quantity">
-                <Minus />
-              </Button>
-              <span className="px-3 text-sm font-semibold" aria-live="polite">
-                1
-              </span>
-              <Button variant="ghost" aria-label="Increase Quantity">
-                <Plus />
-              </Button>
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <span className="font-semibold">Brand:</span>{" "}
+              {PRODUCTDETAILS.brand}
             </div>
-            <Button variant="outline" className="w-full sm:w-auto sm:flex-grow">
-              <Heart size={20} className="mr-1" />
-              Wishlist
-            </Button>
+            <div>
+              <span className="font-semibold">Category:</span>{" "}
+              {PRODUCTDETAILS.category}
+            </div>
+            <div>
+              <span className="font-semibold">SKU:</span> {PRODUCTDETAILS.sku}
+            </div>
+            <div>
+              <span className="font-semibold">Weight:</span>{" "}
+              {PRODUCTDETAILS.weight} kg
+            </div>
+            <div>
+              <span className="font-semibold">In Stock:</span>{" "}
+              {PRODUCTDETAILS.stock} units
+            </div>
           </div>
 
-          <Button className="w-full sm:w-auto">Add to cart</Button>
+          <Separator />
+
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center border rounded-md">
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Decrease Quantity"
+              >
+                <Minus className="h-4 w-4" />
+              </Button>
+              <span className="px-4 py-2 text-sm font-semibold">1</span>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Increase Quantity"
+              >
+                <Plus className="h-4 w-4" />
+              </Button>
+            </div>
+            <Button variant="default" className="flex-grow">
+              <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+            </Button>
+            <Button variant="outline" size="icon" aria-label="Add to Wishlist">
+              <Heart className="h-4 w-4" />
+            </Button>
+          </div>
         </section>
       </section>
 
