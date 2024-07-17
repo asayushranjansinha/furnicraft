@@ -68,7 +68,7 @@ const ProductDetailPage = () => {
         <section className="flex flex-col justify-center space-y-3 py-4 sm:py-6">
           {/* Reviews and ratings */}
           <StarRating
-            numberOfStars={5}
+            rating={5}
             numberOfReviews={11}
             aria-label="Product Rating"
           />
@@ -122,7 +122,7 @@ const ProductDetailPage = () => {
           <h2 className="headline-7 font-medium mt-3">Customer Reviews</h2>
           {/* Overall Product Rating */}
           <StarRating
-            numberOfStars={5}
+            rating={5}
             numberOfReviews={11}
             aria-label="Customer Reviews Rating"
           />
@@ -192,7 +192,7 @@ const Review = ({ name, rating, comment }: Review) => (
       <header>
         <h4 className="headline-7">{name}</h4>
         <div className="flex" aria-label={`Rating: ${rating} out of 5 stars`}>
-          <StarRating numberOfStars={rating} />
+          <StarRating rating={rating} />
         </div>
       </header>
       <p className="text-wrap text-sm text-muted-foreground">{comment}</p>

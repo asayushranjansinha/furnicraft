@@ -28,6 +28,12 @@ import {
   Rows2,
   ShoppingCart,
 } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import StarRating from "@/components/shared/star-rating";
 
 const ProductListing = () => {
@@ -49,7 +55,7 @@ const ProductListing = () => {
       price: 499.99,
       description: "Comfortable and stylish armchair for your living room",
       category: "Furniture",
-      currentDiscount: 10, // 10% discount
+      currentDiscount: 10,
       brand: "HomeComfort",
       stock: 20,
       rating: 4.5,
@@ -58,6 +64,9 @@ const ProductListing = () => {
         "/assets/images/armchair-2.jpg",
         "armchair-3.jpg",
       ],
+      weight: 25,
+      sku: "HC-ARM-001",
+      reviews: 120,
     },
     {
       id: 2,
@@ -65,7 +74,7 @@ const ProductListing = () => {
       price: 799.99,
       description: "Elegant dining table made from solid wood",
       category: "Furniture",
-      currentDiscount: 15, // 15% discount
+      currentDiscount: 15,
       brand: "ElegantHomes",
       stock: 15,
       rating: 4.7,
@@ -73,6 +82,9 @@ const ProductListing = () => {
         "/assets/images/dining-table-1.jpg",
         "/assets/images/dining-table-2.jpg",
       ],
+      weight: 45,
+      sku: "EH-DT-002",
+      reviews: 85,
     },
     {
       id: 3,
@@ -80,7 +92,7 @@ const ProductListing = () => {
       price: 399.99,
       description: "Sturdy bed frame with a modern design",
       category: "Furniture",
-      currentDiscount: 20, // 20% discount
+      currentDiscount: 20,
       brand: "DreamBeds",
       stock: 10,
       rating: 4.3,
@@ -88,9 +100,12 @@ const ProductListing = () => {
         "/assets/images/bed-frame-1.jpg",
         "/assets/images/bed-frame-2.jpg",
         "/assets/images/bed-frame-3.jpg",
-        "/assets/images/bed-frame-4jpg",
-        "/assets/images/bed-frame-5jpg",
+        "/assets/images/bed-frame-4.jpg",
+        "/assets/images/bed-frame-5.jpg",
       ],
+      weight: 50,
+      sku: "DB-BF-003",
+      reviews: 95,
     },
     {
       id: 4,
@@ -98,7 +113,7 @@ const ProductListing = () => {
       price: 149.99,
       description: "Spacious bookshelf for all your books and decor",
       category: "Furniture",
-      currentDiscount: 5, // 5% discount
+      currentDiscount: 5,
       brand: "SmartStorage",
       stock: 25,
       rating: 4.1,
@@ -109,6 +124,9 @@ const ProductListing = () => {
         "/assets/images/bookshelf-4.jpg",
         "/assets/images/bookshelf-5.jpg",
       ],
+      weight: 30,
+      sku: "SS-BS-004",
+      reviews: 75,
     },
     {
       id: 5,
@@ -116,7 +134,7 @@ const ProductListing = () => {
       price: 299.99,
       description: "Comfortable recliner chair with adjustable settings",
       category: "Furniture",
-      currentDiscount: 25, // 25% discount
+      currentDiscount: 25,
       brand: "RelaxSeating",
       stock: 12,
       rating: 4.8,
@@ -127,6 +145,9 @@ const ProductListing = () => {
         "/assets/images/recliner-chair-4.jpg",
         "/assets/images/recliner-chair-5.jpg",
       ],
+      weight: 35,
+      sku: "RS-RC-005",
+      reviews: 150,
     },
     {
       id: 6,
@@ -134,7 +155,7 @@ const ProductListing = () => {
       price: 199.99,
       description: "Modern coffee table with a glass top",
       category: "Furniture",
-      currentDiscount: 10, // 10% discount
+      currentDiscount: 10,
       brand: "ModernLiving",
       stock: 30,
       rating: 4.2,
@@ -144,6 +165,9 @@ const ProductListing = () => {
         "/assets/images/coffee-table-3.jpg",
         "/assets/images/coffee-table-4.jpg",
       ],
+      weight: 20,
+      sku: "ML-CT-006",
+      reviews: 65,
     },
     {
       id: 7,
@@ -151,7 +175,7 @@ const ProductListing = () => {
       price: 699.99,
       description: "Spacious wardrobe with sliding doors",
       category: "Furniture",
-      currentDiscount: 15, // 15% discount
+      currentDiscount: 15,
       brand: "ClosetMasters",
       stock: 8,
       rating: 4.6,
@@ -160,6 +184,9 @@ const ProductListing = () => {
         "/assets/images/wardrobe-2.jpg",
         "/assets/images/wardrobe-3.avif",
       ],
+      weight: 80,
+      sku: "CM-WD-007",
+      reviews: 55,
     },
     {
       id: 8,
@@ -167,7 +194,7 @@ const ProductListing = () => {
       price: 149.99,
       description: "Ergonomic office chair with lumbar support",
       category: "Furniture",
-      currentDiscount: 20, // 20% discount
+      currentDiscount: 20,
       brand: "OfficeComfort",
       stock: 40,
       rating: 4.0,
@@ -178,6 +205,9 @@ const ProductListing = () => {
         "/assets/images/office-chair-4.jpg",
         "/assets/images/office-chair-5.jpg",
       ],
+      weight: 15,
+      sku: "OC-CH-008",
+      reviews: 200,
     },
     {
       id: 9,
@@ -185,7 +215,7 @@ const ProductListing = () => {
       price: 249.99,
       description: "Stylish TV stand with multiple compartments",
       category: "Furniture",
-      currentDiscount: 5, // 5% discount
+      currentDiscount: 5,
       brand: "MediaHub",
       stock: 18,
       rating: 4.4,
@@ -196,6 +226,9 @@ const ProductListing = () => {
         "/assets/images/tv-stand-4.jpg",
         "/assets/images/tv-stand-5.jpg",
       ],
+      weight: 40,
+      sku: "MH-TV-009",
+      reviews: 80,
     },
     {
       id: 10,
@@ -203,7 +236,7 @@ const ProductListing = () => {
       price: 99.99,
       description: "Compact nightstand with a drawer and shelf",
       category: "Furniture",
-      currentDiscount: 25, // 25% discount
+      currentDiscount: 25,
       brand: "BedsideEssentials",
       stock: 35,
       rating: 4.1,
@@ -214,6 +247,215 @@ const ProductListing = () => {
         "/assets/images/nightstand-4.jpg",
         "/assets/images/nightstand-5.jpg",
       ],
+      weight: 10,
+      sku: "BE-NS-010",
+      reviews: 110,
+    },
+    {
+      id: 11,
+      name: "Sofa",
+      price: 899.99,
+      description: "Luxury leather sofa with seating for three",
+      category: "Furniture",
+      currentDiscount: 20,
+      brand: "ComfortLiving",
+      stock: 10,
+      rating: 4.7,
+      images: [
+        "/assets/images/sofa-1.jpg",
+        "/assets/images/sofa-2.jpg",
+        "/assets/images/sofa-3.jpg",
+        "/assets/images/sofa-4.jpg",
+        "/assets/images/sofa-5.jpg",
+      ],
+      weight: 70,
+      sku: "CL-SF-011",
+      reviews: 180,
+    },
+    {
+      id: 12,
+      name: "Patio Set",
+      price: 599.99,
+      description: "Outdoor patio set with table and chairs",
+      category: "Outdoor",
+      currentDiscount: 15,
+      brand: "OutdoorElegance",
+      stock: 5,
+      rating: 4.5,
+      images: [
+        "/assets/images/patio-set-1.jpg",
+        "/assets/images/patio-set-2.jpg",
+        "/assets/images/patio-set-3.jpg",
+      ],
+      weight: 55,
+      sku: "OE-PS-012",
+      reviews: 45,
+    },
+    {
+      id: 13,
+      name: "Bar Stool",
+      price: 129.99,
+      description: "Adjustable height bar stool with cushioned seat",
+      category: "Furniture",
+      currentDiscount: 10,
+      brand: "BarEssentials",
+      stock: 25,
+      rating: 4.3,
+      images: [
+        "/assets/images/bar-stool-1.jpg",
+        "/assets/images/bar-stool-2.jpg",
+        "/assets/images/bar-stool-3.jpg",
+      ],
+      weight: 8,
+      sku: "BE-BS-013",
+      reviews: 95,
+    },
+    {
+      id: 14,
+      name: "Desk Lamp",
+      price: 49.99,
+      description: "Modern desk lamp with adjustable brightness",
+      category: "Lighting",
+      currentDiscount: 5,
+      brand: "BrightLights",
+      stock: 50,
+      rating: 4.2,
+      images: [
+        "/assets/images/desk-lamp-1.jpg",
+        "/assets/images/desk-lamp-2.jpg",
+        "/assets/images/desk-lamp-3.jpg",
+        "/assets/images/desk-lamp-4.jpg",
+        "/assets/images/desk-lamp-5.jpg",
+        "/assets/images/desk-lamp-6.jpg",
+        "/assets/images/desk-lamp-7.jpg",
+        "/assets/images/desk-lamp-8.jpg",
+      ],
+      weight: 2,
+      sku: "BL-DL-014",
+      reviews: 220,
+    },
+    {
+      id: 15,
+      name: "Area Rug",
+      price: 199.99,
+      description: "Soft area rug with geometric patterns",
+      category: "Decor",
+      currentDiscount: 20,
+      brand: "HomeDecor",
+      stock: 20,
+      rating: 4.4,
+      images: [
+        "/assets/images/area-rug-1.jpg",
+        "/assets/images/area-rug-2.jpg",
+        "/assets/images/area-rug-3.jpg",
+      ],
+      weight: 5,
+      sku: "HD-AR-015",
+      reviews: 75,
+    },
+    {
+      id: 16,
+      name: "Wall Art",
+      price: 79.99,
+      description: "Abstract wall art to enhance your living space",
+      category: "Decor",
+      currentDiscount: 10,
+      brand: "ArtisticTouch",
+      stock: 15,
+      rating: 4.5,
+      images: [
+        "/assets/images/wall-art-1.jpg",
+        "/assets/images/wall-art-2.jpg",
+        "/assets/images/wall-art-3.jpg",
+        "/assets/images/wall-art-4.jpg",
+        "/assets/images/wall-art-5.jpg",
+      ],
+      weight: 1,
+      sku: "AT-WA-016",
+      reviews: 60,
+    },
+    {
+      id: 17,
+      name: "Bookshelf Ladder",
+      price: 199.99,
+      description: "Stylish bookshelf ladder with multiple shelves",
+      category: "Furniture",
+      currentDiscount: 15,
+      brand: "SmartStorage",
+      stock: 10,
+      rating: 4.6,
+      images: [
+        "/assets/images/bookshelf-ladder-1.jpg",
+        "/assets/images/bookshelf-ladder-2.jpg",
+        "/assets/images/bookshelf-ladder-3.jpg",
+        "/assets/images/bookshelf-ladder-4.jpg",
+        "/assets/images/bookshelf-ladder-5.jpg",
+      ],
+      weight: 15,
+      sku: "SS-BL-017",
+      reviews: 40,
+    },
+    {
+      id: 18,
+      name: "Floor Lamp",
+      price: 99.99,
+      description: "Tall floor lamp with a sleek design",
+      category: "Lighting",
+      currentDiscount: 20,
+      brand: "LightUp",
+      stock: 25,
+      rating: 4.4,
+      images: [
+        "/assets/images/floor-lamp-1.jpg",
+        "/assets/images/floor-lamp-2.jpg",
+        "/assets/images/floor-lamp-3.jpg",
+        "/assets/images/floor-lamp-4.jpg",
+        "/assets/images/floor-lamp-5.jpg",
+      ],
+      weight: 4,
+      sku: "LU-FL-018",
+      reviews: 85,
+    },
+    {
+      id: 19,
+      name: "Kitchen Island",
+      price: 399.99,
+      description: "Versatile kitchen island with storage space",
+      category: "Furniture",
+      currentDiscount: 10,
+      brand: "KitchenPro",
+      stock: 8,
+      rating: 4.5,
+      images: [
+        "/assets/images/kitchen-island-1.jpg",
+        "/assets/images/kitchen-island-2.jpg",
+        "/assets/images/kitchen-island-3.jpg",
+        "/assets/images/kitchen-island-4.jpg",
+        "/assets/images/kitchen-island-5.jpg",
+      ],
+      weight: 60,
+      sku: "KP-KI-019",
+      reviews: 30,
+    },
+    {
+      id: 20,
+      name: "Lounge Chair",
+      price: 349.99,
+      description: "Comfortable lounge chair with a modern design",
+      category: "Furniture",
+      currentDiscount: 25,
+      brand: "RelaxSeating",
+      stock: 15,
+      rating: 4.8,
+      images: [
+        "/assets/images/lounge-chair-1.jpg",
+        "/assets/images/lounge-chair-2.jpg",
+        "/assets/images/lounge-chair-3.jpg",
+        "/assets/images/lounge-chair-4.jpg",
+      ],
+      weight: 18,
+      sku: "RS-LC-020",
+      reviews: 100,
     },
   ];
 
@@ -353,54 +595,147 @@ const ProductListing = () => {
             })}
           </div>
         );
+
       case "compact":
         return (
           <div className="space-y-2">
             {products.map((product) => (
-              <div
+              <Card
                 key={product.id}
-                className="flex items-center justify-between p-2 border rounded"
+                className="hover:shadow-md transition-all duration-200 group"
               >
-                <span>{product.name}</span>
-                <Badge>${product.price}</Badge>
-              </div>
+                <CardContent className="p-3 flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 rounded-md overflow-hidden flex-shrink-0 transition-transform duration-200 group-hover:scale-105">
+                      <Image
+                        src={product.images[0]}
+                        alt={product.name}
+                        width={48}
+                        height={48}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-medium text-sm line-clamp-1 group-hover:text-primary transition-colors duration-200">
+                        {product.name}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {product.brand}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Badge
+                      variant="secondary"
+                      className="text-xs transition-colors duration-200 group-hover:bg-primary group-hover:text-primary-foreground"
+                    >
+                      ${product.price.toFixed(2)}
+                    </Badge>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8 transition-transform duration-200 hover:scale-110"
+                          >
+                            <ShoppingCart className="h-4 w-4" />
+                            <span className="sr-only">Add to cart</span>
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Add to cart</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         );
+
       case "detailed":
         return (
           <div className="space-y-8">
             {products.map((product) => (
-              <Card key={product.id}>
-                <CardHeader>
-                  <div className="flex justify-between items-center">
-                    <CardTitle>{product.name}</CardTitle>
-                    <Badge>${product.price}</Badge>
+              <Card key={product.id} className="overflow-hidden">
+                <CardHeader className="pb-4">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-2">
+                    <div>
+                      <CardTitle className="text-xl sm:text-2xl">
+                        {product.name}
+                      </CardTitle>
+                      <CardDescription className="text-sm mt-1">
+                        {product.category} | Brand: {product.brand}
+                      </CardDescription>
+                    </div>
+                    <div className="text-left sm:text-right">
+                      <Badge variant="secondary" className="text-lg mb-2">
+                        ${product.price.toFixed(2)}
+                      </Badge>
+                      {product.currentDiscount > 0 && (
+                        <Badge variant="destructive" className="ml-2">
+                          {product.currentDiscount}% Off
+                        </Badge>
+                      )}
+                    </div>
                   </div>
-                  <CardDescription>{product.category}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex">
-                    <div className="w-1/3">
-                      <Image
-                        src="/placeholder.png"
-                        alt={product.name}
-                        width={200}
-                        height={200}
-                      />
+                  <div className="flex flex-col md:flex-row gap-6">
+                    <div className="w-full md:w-1/3">
+                      <div className="aspect-square relative rounded-lg overflow-hidden">
+                        <Image
+                          src={product.images[0]}
+                          alt={product.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
                     </div>
-                    <div className="w-2/3 pl-4">
-                      <p>{product.description}</p>
-                      <ul className="mt-4 space-y-2">
-                        <li>Feature 1</li>
-                        <li>Feature 2</li>
-                        <li>Feature 3</li>
-                      </ul>
+                    <div className="w-full md:w-2/3">
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {product.description}
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">Key Features</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Feature 1</li>
+                            <li>Feature 2</li>
+                            <li>Feature 3</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">Specifications</h4>
+                          <div className="space-y-1 text-sm">
+                            <p>Weight: {product.weight} kg</p>
+                            <p>Stock: {product.stock} units</p>
+                            <p>SKU: {product.sku}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter>
-                  <Button>Add to Cart</Button>
+                <CardFooter className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <div className="flex items-center">
+                    <StarRating rating={product.rating} />
+                    <span className="ml-2 text-sm text-muted-foreground">
+                      ({product.reviews} reviews)
+                    </span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row w-full sm:w-auto space-y-2 sm:space-y-0 sm:space-x-2">
+                    <Button variant="outline" className="w-full sm:w-auto">
+                      <Heart className="w-4 h-4 mr-2" />
+                      Wishlist
+                    </Button>
+                    <Button className="w-full sm:w-auto">
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Add to Cart
+                    </Button>
+                  </div>
                 </CardFooter>
               </Card>
             ))}
