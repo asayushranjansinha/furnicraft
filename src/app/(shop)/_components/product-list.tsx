@@ -117,6 +117,7 @@ const ProductList = ({
                     <p className="text-sm text-gray-600 mb-3 line-clamp-3">
                       {product.description}
                     </p>
+
                     <div className="mt-auto">
                       <div className="flex items-center justify-between mb-3">
                         <div>
@@ -224,48 +225,49 @@ const ProductList = ({
         <div className="flex flex-col gap-6">
           {mockProducts.map((product) => (
             <Link key={product.id} href={`/products/${product.id}`}>
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <CardHeader className="pb-4">
-                  <div className="flex flex-col sm:flex-row justify-between items-start gap-2">
-                    <div>
-                      <CardTitle className="text-xl sm:text-2xl">
-                        {product.name}
-                      </CardTitle>
-                      <CardDescription className="text-sm mt-1">
-                        {product.category} | Brand: {product.brand}
-                      </CardDescription>
-                    </div>
-                    <div className="text-left sm:text-right">
-                      <Badge variant="secondary" className="text-lg mb-2">
-                        ${product.price.toFixed(2)}
-                      </Badge>
-                      {product.currentDiscount > 0 && (
-                        <Badge variant="destructive" className="ml-2">
-                          {product.currentDiscount}% Off
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-col md:flex-row gap-6">
-                    <div className="w-full md:w-1/3">
+              <Card className="overflow-hidden hover:shadow-md transition-shadow duration-300">
+                <CardContent className="p-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="w-full sm:w-1/4">
                       <div className="aspect-square relative rounded-lg overflow-hidden">
                         <Image
                           src={product.images[0]}
                           alt={product.name}
                           fill
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                          quality={85}
+                          sizes="(max-width: 640px) 100vw, 25vw"
+                          quality={80}
                           className="object-cover"
                         />
                       </div>
                     </div>
-                    <div className="w-full md:w-2/3">
-                      <p className="text-sm text-muted-foreground mb-4">
+                    <div className="w-full sm:w-3/4 flex flex-col">
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h3 className="text-lg font-semibold">
+                            {product.name}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {product.category} | Brand: {product.brand}
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <Badge variant="secondary" className="text-sm">
+                            ${product.price.toFixed(2)}
+                          </Badge>
+                          {product.currentDiscount > 0 && (
+                            <Badge
+                              variant="destructive"
+                              className="ml-2 text-xs"
+                            >
+                              {product.currentDiscount}% Off
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
                         {product.description}
                       </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-4 mb-2">
                         <div>
                           <h4 className="font-semibold mb-2">Key Features</h4>
                           <ul className="list-disc list-inside space-y-1 text-sm">
@@ -283,27 +285,28 @@ const ProductList = ({
                           </div>
                         </div>
                       </div>
+
+                      <div className="flex justify-between items-center mt-auto">
+                        <div className="flex items-center">
+                          <StarRating rating={product.rating} />
+                          <span className="ml-2 text-xs text-muted-foreground">
+                            ({product.reviews.length})
+                          </span>
+                        </div>
+                        <div className="flex space-x-2">
+                          <Button variant="outline" size="sm">
+                            <Heart className="w-4 h-4 mr-1" />
+                            Wishlist
+                          </Button>
+                          <Button size="sm">
+                            <ShoppingCart className="w-4 h-4 mr-1" />
+                            Add to Cart
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <div className="flex items-center">
-                    <StarRating rating={product.rating} />
-                    <span className="ml-2 text-sm text-muted-foreground">
-                      ({product.reviews.length} reviews)
-                    </span>
-                  </div>
-                  <div className="flex flex-col sm:flex-row w-full sm:w-auto space-y-2 sm:space-y-0 sm:space-x-2">
-                    <Button variant="outline" className="w-full sm:w-auto">
-                      <Heart className="w-4 h-4 mr-2" />
-                      Wishlist
-                    </Button>
-                    <Button className="w-full sm:w-auto">
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Add to Cart
-                    </Button>
-                  </div>
-                </CardFooter>
               </Card>
             </Link>
           ))}
