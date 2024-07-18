@@ -22,6 +22,7 @@ const config = {
         monainn: ['var(--font-monainn)'],
         inter: ['var(--font-inter)'],
         poppins: ['var(--font-poppins)'],
+        grotesk: ['var(--font-grotesk)']
       },
       fontSize: {
         'hairline-1': ['16px', { lineHeight: '16px', letterSpacing: '0px' }],

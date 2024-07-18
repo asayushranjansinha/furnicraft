@@ -6,20 +6,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Divide as Hamburger } from "hamburger-react";
 
-import { Heart, Menu, Search, ShoppingBag } from "lucide-react";
-import { Button } from "../ui/button";
 import Logo from "@/components/shared/logo";
 import { Input } from "@/components/ui/input";
+import { Heart, Search, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { Button } from "../ui/button";
 
 const NavbarMobile = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -58,27 +52,26 @@ const NavbarMobile = () => {
           </Button>
         </div>
         <div className="h-full overflow-x-hidden overflow-y-auto">
-          <Accordion type="single" collapsible>
-            <AccordionItem value="home">
-              <Link href="/">
-                <AccordionTrigger>Home</AccordionTrigger>
-              </Link>
-            </AccordionItem>
-            <AccordionItem value="products">
-              <Link href="/products">
-                <AccordionTrigger>Products</AccordionTrigger>
-              </Link>
-            </AccordionItem>
-            <AccordionItem value="contact-us">
-              <AccordionTrigger className="button-xs">
-                Contact Us
-              </AccordionTrigger>
-              <AccordionContent>
-                Yes. It&apos;s animated by default, but you can disable it if
-                you prefer.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <div className="flex flex-col">
+            <Link
+              href="/"
+              className="py-4 border-b font-grotesk"
+            >
+              Home
+            </Link>
+            <Link
+              href="/products"
+              className="py-4 border-b"
+            >
+              Products
+            </Link>
+            <Link
+              href="/contact-us"
+              className="py-4 border-b"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
 
         {/* Secondary Navigation */}

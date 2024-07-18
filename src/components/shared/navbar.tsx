@@ -5,15 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Search, ShoppingBag, User } from "lucide-react";
-import { Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavbarMobile from "./navbar-mobile";
-
-const space_grotesk = Space_Grotesk({
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -23,7 +17,10 @@ const Navbar = () => {
       className="relative z-50 bg-white shadow-sm"
       aria-label="Main Navigation"
     >
-      <div id="navbar-container" className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-1 lg:py-2 flex justify-between items-center">
+      <div
+        id="navbar-container"
+        className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-1 lg:py-2 flex justify-between items-center"
+      >
         <div className="lg:hidden flex items-center gap-1">
           <NavbarMobile />
           <Logo className="text-xl" />
@@ -40,40 +37,21 @@ const Navbar = () => {
             <Link
               href="/"
               className={cn(
-                "font-medium text-base text-muted-foreground px-3 py-2 rounded-md h-10 hover:text-black transition-colors",
-                space_grotesk.className,
-                pathname === "/" && "text-black",
-                pathname.includes("/") && pathname !== "/" && "text-black"
+                "font-medium text-base text-muted-foreground px-3 py-2 font-grotesk rounded-md h-10 hover:text-black transition-colors",
+                pathname === "/" && "text-black"
               )}
               role="menuitem"
             >
               Home
             </Link>
           </li>
-          <li id="nav-shop" role="none">
-            <Link
-              href="/shop"
-              className={cn(
-                "font-medium text-base text-muted-foreground px-3 py-2 rounded-md h-10 hover:text-black transition-colors",
-                space_grotesk.className,
-                pathname === "/shop" && "text-black",
-                pathname.includes("/shop") && pathname !== "/" && "text-black"
-              )}
-              role="menuitem"
-            >
-              Shop
-            </Link>
-          </li>
           <li id="nav-products" role="none">
             <Link
               href="/products"
               className={cn(
-                "font-medium text-base text-muted-foreground px-3 py-2 rounded-md h-10 hover:text-black transition-colors",
-                space_grotesk.className,
+                "font-medium text-base text-muted-foreground px-3 py-2 font-grotesk rounded-md h-10 hover:text-black transition-colors",
                 pathname === "/products" && "text-black",
-                pathname.includes("/products") &&
-                  pathname !== "/" &&
-                  "text-black"
+                pathname.includes("/products") && "text-black"
               )}
               role="menuitem"
             >
@@ -84,12 +62,9 @@ const Navbar = () => {
             <Link
               href="/contact-us"
               className={cn(
-                "font-medium text-base text-muted-foreground px-3 py-2 rounded-md h-10 hover:text-black transition-colors",
-                space_grotesk.className,
+                "font-medium text-base text-muted-foreground px-3 py-2 font-grotesk rounded-md h-10 hover:text-black transition-colors",
                 pathname === "/contact-us" && "text-black",
-                pathname.includes("/contact-us") &&
-                  pathname !== "/" &&
-                  "text-black"
+                pathname.includes("/contact-us") && "text-black"
               )}
               role="menuitem"
             >
