@@ -35,7 +35,7 @@ const ProductListControls: React.FC<ProductListControlProps> = ({
         </div>
 
         <div
-          className="flex items-end gap-x-3"
+          className="flex items-end justify-between gap-x-3"
           aria-label="Sorting and view options"
           id="sorting-and-view-options"
         >

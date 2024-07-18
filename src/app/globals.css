@@ -9,18 +9,13 @@ body,
   box-sizing: border-box;
 }
 
-:root {
-  --header-height: 104px;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #000 !important;
 }
-
 
 
 @layer base {
@@ -105,6 +100,7 @@ input:-webkit-autofill:active {
   .headline-5 {
     @apply font-poppins text-headline-5 font-medium;
   }
+
   .headline-6 {
     @apply font-poppins text-headline-6 font-medium;
   }
@@ -145,4 +141,3 @@ input:-webkit-autofill:active {
     @apply font-medium font-poppins text-headline-7;
   }
 }
-
