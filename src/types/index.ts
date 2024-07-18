@@ -60,3 +60,9 @@ export interface Product {
     sku: string;
     reviews: Review[];
 }
+export type HeroCarouselItemTypes = {
+    id: number;
+    imageSrc: string;
+    title: string;
+    link: string;
+}

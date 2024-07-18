@@ -5,6 +5,7 @@ import {
   ProductCategoryValue,
   SortOption,
   Product,
+  HeroCarouselItemTypes,
 } from "@/types";
 
 export const productListViewOptions: ProductListViewOptionType[] = [
@@ -1383,5 +1384,68 @@ export const mockProducts: Product[] = [
         comment: "Excellent service and product quality. I'm impressed!",
       },
     ],
+  },
+];
+
+export const heroCarouselImages: HeroCarouselItemTypes[] = [
+  {
+    id: 1,
+    imageSrc: "/assets/images/hero-carousel-1.jpg",
+    title: "Title 1",
+    link: "/products/random-text-1",
+  },
+  {
+    id: 2,
+    imageSrc: "/assets/images/hero-carousel-2.jpg",
+    title: "Title 2",
+    link: "/products/random-text-2",
+  },
+  {
+    id: 3,
+    imageSrc: "/assets/images/hero-carousel-3.jpg",
+    title: "Title 3",
+    link: "/products/random-text-3",
+  },
+  {
+    id: 4,
+    imageSrc: "/assets/images/hero-carousel-4.jpg",
+    title: "Title 4",
+    link: "/products/random-text-4",
+  },
+  {
+    id: 5,
+    imageSrc: "/assets/images/hero-carousel-5.jpg",
+    title: "Title 5",
+    link: "/products/random-text-5",
+  },
+  {
+    id: 6,
+    imageSrc: "/assets/images/hero-carousel-6.jpg",
+    title: "Title 6",
+    link: "/products/random-text-6",
+  },
+  {
+    id: 7,
+    imageSrc: "/assets/images/hero-carousel-7.jpg",
+    title: "Title 7",
+    link: "/products/random-text-7",
+  },
+  {
+    id: 8,
+    imageSrc: "/assets/images/hero-carousel-8.jpg",
+    title: "Title 8",
+    link: "/products/random-text-8",
+  },
+  {
+    id: 9,
+    imageSrc: "/assets/images/hero-carousel-9.jpg",
+    title: "Title 9",
+    link: "/products/random-text-9",
+  },
+  {
+    id: 10,
+    imageSrc: "/assets/images/hero-carousel-10.jpg",
+    title: "Title 10",
+    link: "/products/random-text-10",
   },
 ];

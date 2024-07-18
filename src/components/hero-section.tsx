@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { heroCarouselImages as carouselItems } from "@/data/constants";
 import Autoplay from "embla-carousel-autoplay";
 
 import Image from "next/image";
@@ -27,29 +28,25 @@ const HeroSection = () => {
         opts={{ loop: true }}
       >
         <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index}>
-              <div className="h-[304px] md:h-[360px] w-full relative">
+          {carouselItems.map((image) => (
+            <CarouselItem key={image.id}>
+              <div className="relative aspect-[16/9] w-full max-h-[512px] lg:max-h-[400px]">
                 <Image
-                  src={"/assets/images/banner1.png"}
-                  alt="Banner"
+                  src={image.imageSrc}
+                  alt={image.title}
                   fill
-                  objectFit="cover"
-                  className="md:hidden"
-                  aria-label={`Banner image ${index + 1}`}
-                />
-                <Image
-                  src={"/assets/images/banner1-lg.png"}
-                  alt="Banner"
-                  fill
-                  objectFit="cover"
-                  className="hidden md:block"
-                  aria-label={`Banner image ${index + 1}`}
-                />
+
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL="/assets/images/banner-shop-placeholder.jpg"
+                  />
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
+
         <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 h-8 w-8" />
         <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 h-8 w-8" />
       </Carousel>
