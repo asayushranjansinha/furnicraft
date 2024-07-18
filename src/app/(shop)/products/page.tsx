@@ -1,92 +1,91 @@
 "use client";
 import { ProductListViewNameEnum } from "@/types";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import StickyBox from "react-sticky-box";
 import ShopBanner from "../_components/banner";
 import ProductList from "../_components/product-list";
 import ProductListControls from "../_components/product-list-controls";
 
-const ProductListing = () => {
-  const [headerHeight, setHeaderHeight] = useState<number>(0);
-  const [isNavigationVisible, setIsNavigationVisible] = useState<boolean>(false);
-  const triggerSectionRef = useRef<HTMLElement | null>(null);
+const CheckoutPage = () => {
+  const [headerHeight, setHeaderHeight] = useState<number | null>(null);
+  const [stickyState, setStickyState] = useState<
+    "normal" | "sticky" | "hidden"
+  >("normal");
+  const lastScrollY = useRef<number>(0);
+  const stickyRef = useRef<HTMLDivElement | null>(null);
+  const rafId = useRef<number | null>(null);
   const [currentView, setCurrentView] = useState<ProductListViewNameEnum>(
     ProductListViewNameEnum.GridView
   );
-  const lastScrollY = useRef<number>(0);
 
-  const throttle = (func: Function, limit: number) => {
-    let inThrottle: boolean;
-    return function(this: any, ...args: any[]) {
-      if (!inThrottle) {
-        func.apply(this, args);
-        inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
-      }
-    };
-  };
+  useEffect(() => {
+    const header = document.getElementById("shop-header");
+    if (header) {
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          setHeaderHeight(entry.contentRect.height);
+        }
+      });
+      resizeObserver.observe(header);
+      return () => resizeObserver.disconnect();
+    }
+  }, []);
 
-  const updateNavigationVisibility = useCallback(throttle(() => {
-    const headerElement = document.getElementById("shop-header") as HTMLElement;
-    const triggerSection = triggerSectionRef.current;
+  const handleScroll = useCallback(() => {
+    if (!stickyRef.current || headerHeight === null) return;
 
-    if (!headerElement || !triggerSection) return;
-
-    const headerBottom = headerElement.getBoundingClientRect().bottom;
-    const triggerSectionTop = triggerSection.getBoundingClientRect().top;
     const currentScrollY = window.scrollY;
+    const stickyTop = stickyRef.current.getBoundingClientRect().top;
+    const isSticky = stickyTop <= headerHeight;
 
-    if (triggerSectionTop <= headerBottom) {
-      const isScrollingDown = currentScrollY > lastScrollY.current;
-      setIsNavigationVisible(!isScrollingDown);
+    if (isSticky) {
+      if (currentScrollY < lastScrollY.current) {
+        // Scrolling up
+        setStickyState("sticky");
+      } else if (currentScrollY > lastScrollY.current) {
+        // Scrolling down
+        setStickyState("hidden");
+      }
     } else {
-      setIsNavigationVisible(false);
+      setStickyState("normal");
     }
 
     lastScrollY.current = currentScrollY;
-  }, 100), []);
+  }, [headerHeight]);
 
   useEffect(() => {
-    const headerElement = document.getElementById("shop-header") as HTMLElement;
-    if (!headerElement) return;
-
-    const updateHeaderHeight = () => {
-      const height = headerElement.offsetHeight;
-      setHeaderHeight(height);
+    const onScroll = () => {
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+      }
+      rafId.current = requestAnimationFrame(handleScroll);
     };
 
-    updateHeaderHeight();
-    updateNavigationVisibility();
-
-    window.addEventListener("scroll", updateNavigationVisibility);
-    window.addEventListener("resize", () => {
-      updateHeaderHeight();
-      updateNavigationVisibility();
-    });
-
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", updateNavigationVisibility);
-      window.removeEventListener("resize", updateHeaderHeight);
+      window.removeEventListener("scroll", onScroll);
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+      }
     };
-  }, [updateNavigationVisibility]);
+  }, [handleScroll]);
 
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="space-y-6">
       <ShopBanner />
-
-      <section
-        ref={triggerSectionRef}
-        style={{ top: `${headerHeight}px` }}
-        className={`
-          bg-white py-2 z-40
-          transition-all duration-300 ease-in-out
-          ${isNavigationVisible ? "sticky left-0 right-0" : "static"}
-        `}
+      <StickyBox
+        offsetTop={headerHeight ?? 100}
+        className={`z-40 transition-all duration-300 ease-linear ${
+          stickyState === "hidden" ? "-translate-y-full" : "translate-y-0"
+        }`}
       >
-        <ProductListControls
-          currentView={currentView}
-          onChangeViewOption={setCurrentView}
-        />
-      </section>
+        <section ref={stickyRef} className={`py-2 bg-white`}>
+          <ProductListControls
+            currentView={currentView}
+            onChangeViewOption={setCurrentView}
+          />
+        </section>
+      </StickyBox>
       <section>
         <ProductList viewOption={currentView} />
       </section>
@@ -94,4 +93,4 @@ const ProductListing = () => {
   );
 };
 
-export default ProductListing;
+export default CheckoutPage;

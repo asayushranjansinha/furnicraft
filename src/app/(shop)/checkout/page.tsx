@@ -1,75 +1,97 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef, useCallback } from "react";
+import StickyBox from "react-sticky-box";
 
-interface Section {
-  id: string;
-  content: string;
-  height: string;
-}
-
-const CheckoutPage: React.FC = () => {
-  const [isNavigationVisible, setIsNavigationVisible] = useState<boolean>(false);
-  const triggerSectionRef = useRef<HTMLElement | null>(null);
-
-  const sections: Section[] = [
-    { id: "section-1", content: "Section 1", height: "500px" },
-    { id: "section-2", content: "Section 2", height: "500px" },
-    { id: "section-3", content: "Section 3", height: "200px" },
-    { id: "section-4", content: "Section 4", height: "500px" },
-    { id: "section-5", content: "Section 5", height: "500px" },
-  ];
+const CheckoutPage = () => {
+  const [headerHeight, setHeaderHeight] = useState<number | null>(null);
+  const [isSticky, setIsSticky] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const lastScrollY = useRef<number>(0);
+  const stickyRef = useRef<HTMLDivElement | null>(null);
+  const rafId = useRef<number | null>(null);
 
   useEffect(() => {
-    const headerElement = document.getElementById('shop-header') as HTMLElement;
-    const triggerSection = triggerSectionRef.current;
-
-    if (!headerElement || !triggerSection) return;
-
-    const updateNavigationVisibility = (): void => {
-      const headerBottom = headerElement.getBoundingClientRect().bottom;
-      const triggerSectionTop = triggerSection.getBoundingClientRect().top;
-      setIsNavigationVisible(triggerSectionTop <= headerBottom);
-    };
-
-    // Initial check
-    updateNavigationVisibility();
-
-    // Add scroll event listener
-    window.addEventListener('scroll', updateNavigationVisibility);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('scroll', updateNavigationVisibility);
-    };
+    const header = document.getElementById("shop-header");
+    if (header) {
+      const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          setHeaderHeight(entry.contentRect.height);
+        }
+      });
+      resizeObserver.observe(header);
+      return () => resizeObserver.disconnect();
+    }
   }, []);
+
+  const handleScroll = useCallback(() => {
+    if (!stickyRef.current || headerHeight === null) return;
+
+    const currentScrollY = window.scrollY;
+    const stickyTop = stickyRef.current.getBoundingClientRect().top;
+    const newIsSticky = stickyTop <= headerHeight;
+
+    if (newIsSticky) {
+      if (currentScrollY < lastScrollY.current) {
+        // Scrolling up
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        // Scrolling down
+        setIsVisible(false);
+      }
+    } else {
+      setIsVisible(true);
+    }
+
+    setIsSticky(newIsSticky);
+    lastScrollY.current = currentScrollY;
+  }, [headerHeight]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+      }
+      rafId.current = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+      }
+    };
+  }, [handleScroll]);
 
   return (
     <div className="space-y-6">
-      <AnimatePresence>
-        {isNavigationVisible && (
-          <motion.nav
-            id="navigation-bar"
-            className="sticky top-[53px] p-6 bg-red-400 left-0 right-0 z-40"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.3 }}
-          >
-            Navigation Bar
-          </motion.nav>
-        )}
-      </AnimatePresence>
-      {sections.map((section, index) => (
+      <section className="flex justify-center items-center h-[500px] text-5xl border-2 border-black">
+        Section One
+      </section>
+      <section className="flex justify-center items-center h-[500px] text-5xl border-2 border-black">
+        Section Two
+      </section>
+      <StickyBox
+        offsetTop={headerHeight ?? 100}
+        className={`z-40 transition-all duration-300 ease-linear ${
+          isSticky && !isVisible ? "-translate-y-full" : "translate-y-0"
+        }`}
+      >
         <section
-          key={section.id}
-          id={section.id}
-          ref={index === 2 ? triggerSectionRef : undefined}
-          className={`h-[${section.height}] border-2 flex items-center justify-center`}
+          ref={stickyRef}
+          className={`flex justify-center items-center text-5xl border-2 border-black ${
+            isSticky ? "bg-red-500" : "bg-blue-500"
+          }`}
         >
-          {section.content}
+          {headerHeight}
         </section>
-      ))}
+      </StickyBox>
+      <section className="flex justify-center items-center h-[500px] text-5xl border-2 border-black">
+        Section Four
+      </section>
+      <section className="flex justify-center items-center h-[500px] text-5xl border-2 border-black">
+        Section Five
+      </section>
     </div>
   );
 };
