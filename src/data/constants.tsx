@@ -19,21 +19,21 @@ export const productListViewOptions: ProductListViewOptionType[] = [
     ),
   },
   {
-    name: ProductListViewNameEnum.ListView,
-    icon: (
-      <img
-        src="assets/svg/list-icon.svg"
-        alt="List view icon"
-        className="w-5 h-5"
-      />
-    ),
-  },
-  {
     name: ProductListViewNameEnum.CompactView,
     icon: (
       <img
         src="assets/svg/compact-icon.svg"
         alt="Compact view icon"
+        className="w-5 h-5"
+      />
+    ),
+  },
+  {
+    name: ProductListViewNameEnum.ListView,
+    icon: (
+      <img
+        src="assets/svg/list-icon.svg"
+        alt="List view icon"
         className="w-5 h-5"
       />
     ),
