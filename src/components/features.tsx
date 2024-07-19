@@ -1,61 +1,72 @@
-import { Lock, PhoneCallIcon, Ticket, TruckIcon } from "lucide-react";
+import React from 'react';
+import { Lock, PhoneCall, Ticket, Truck } from "lucide-react";
 
-const Features = () => {
+interface Feature {
+  Icon: React.ElementType;
+  title: string;
+  description: string;
+  bgColor: string;
+  iconBgColor: string;
+}
+
+const FeatureCard: React.FC<Feature> = ({ Icon, title, description, bgColor, iconBgColor }) => (
+  <div className={`${bgColor} rounded-2xl p-6 transition-all hover:brightness-95`}>
+    <div className="flex items-center space-x-4">
+      <div className={`${iconBgColor} p-3 rounded-full`}>
+        <Icon size={24} className="text-primary" />
+      </div>
+      <div>
+        <h6 className="headline-7 mb-1">{title}</h6>
+        <p className="font-poppins text-sm text-muted-foreground">{description}</p>
+      </div>
+    </div>
+  </div>
+);
+
+const Features: React.FC = () => {
+  const features: Feature[] = [
+    { 
+      Icon: Truck, 
+      title: "Free Shipping", 
+      description: "Order above $200",
+      bgColor: "bg-blue-50",
+      iconBgColor: "bg-blue-100"
+    },
+    { 
+      Icon: Ticket, 
+      title: "Money-back", 
+      description: "30 days guarantee",
+      bgColor: "bg-green-50",
+      iconBgColor: "bg-green-100"
+    },
+    { 
+      Icon: Lock, 
+      title: "Secure Payments", 
+      description: "Secured by Stripe",
+      bgColor: "bg-purple-50",
+      iconBgColor: "bg-purple-100"
+    },
+    { 
+      Icon: PhoneCall, 
+      title: "24/7 Support", 
+      description: "Phone and Email support",
+      bgColor: "bg-orange-50",
+      iconBgColor: "bg-orange-100"
+    },
+  ];
+
   return (
-    <section
-      id="features"
-      className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8"
-    >
-      <h2 id="our-features-heading" className="headline-5">
+    <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8">
+      <h2 id="our-features-heading" className="headline-5 mb-8 text-center">
         Our Features
       </h2>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 py-6 sm:py-8">
-        <div className="col-span-1 bg-secondary h-[200px] lg:h-60">
-          <div className="space-y-4 px-4 py-8 lg:px-8 lg:py-12">
-            <TruckIcon size={48} />
-            <div className="">
-              <h6 className="headline-7">Free Shipping</h6>
-              <p className="font-poppins text-base leading-6 text-muted-foreground">
-                Order above $200
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="col-span-1 bg-secondary h-[200px] lg:h-60">
-          <div className="space-y-4 px-4 py-8 lg:px-8 lg:py-12">
-            <Ticket size={48} />
-            <div className="">
-              <h6 className="headline-7">Money-back</h6>
-              <p className="font-poppins text-base leading-6 text-muted-foreground">
-                30 days guarantee
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="col-span-1 bg-secondary h-[200px] lg:h-60">
-          <div className="space-y-4 px-4 py-8 lg:px-8 lg:py-12">
-            <Lock size={48} />
-            <div className="">
-              <h6 className="headline-7">Secure Payments</h6>
-              <p className="font-poppins text-base leading-6 text-muted-foreground">
-                Secured by Stripe
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="col-span-1 bg-secondary h-[200px] lg:h-60">
-          <div className="space-y-4 px-4 py-8 lg:px-8 lg:py-12">
-            <PhoneCallIcon size={48} />
-            <div className="">
-              <h6 className="headline-7">24/7 Support</h6>
-              <p className="font-poppins text-base leading-6 text-muted-foreground">
-                Phone and Email support
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {features.map((feature, index) => (
+          <FeatureCard key={index} {...feature} />
+        ))}
       </div>
     </section>
   );
 };
+
 export default Features;

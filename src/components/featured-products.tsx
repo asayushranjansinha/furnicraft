@@ -1,7 +1,4 @@
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "./ui/button";
 import LinkButton from "./shared/link-button";
 
 const FeaturedProducts = () => {
@@ -11,43 +8,57 @@ const FeaturedProducts = () => {
       className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8"
     >
       <div className="grid lg:grid-cols-2 gap-6">
-        <div className="h-[23rem] lg:h-[34rem] bg-secondary relative p-8">
+        {/* Living Room Section */}
+        <div className="relative h-[23rem] lg:h-[34rem] bg-secondary overflow-hidden group">
           <Image
-            src={"/assets/images/sofa-lg.png"}
-            alt="Living Room"
+            src="/assets/images/sofa-lg.png"
+            alt="Stylish living room setup with a modern sofa"
             fill
-            objectFit="contain"
+            className="object-contain object-right-bottom transition-transform group-hover:scale-105"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            priority
           />
-          <div className="relative z-10 space-y-3">
-            <h3 className={"font-medium headline-5"}>Living Room</h3>
-            <LinkButton href="#" title="Shop Now" />
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 to-transparent">
+            <div className="h-full p-8 flex flex-col justify-end">
+              <h2 className="font-medium text-2xl sm:text-3xl lg:text-4xl text-primary mb-4">
+                Living Room
+              </h2>
+              <div className="">
+                <LinkButton href="/living-room" title="Shop Now" />
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Bedroom and Kitchen Grid */}
         <div className="grid gap-6">
-          <div className="h-[10.75rem] lg:h-[16.25rem] relative w-full bg-secondary p-8">
-            <Image
-              src={"/assets/images/bedroom.png"}
-              alt="Bedroom"
-              fill
-              objectFit="contain"
-            />
-            <div className="absolute bottom-8 z-10 space-y-3">
-              <h3 className={"font-medium headline-5"}>Bedroom</h3>
-              <LinkButton href="#" title="Shop Now" />
+          {["Bedroom", "Kitchen"].map((room) => (
+            <div
+              key={room}
+              className="relative h-[10.75rem] lg:h-[16.25rem] bg-secondary overflow-hidden group"
+            >
+              <Image
+                src={`/assets/images/${room.toLowerCase()}.png`}
+                alt={`${room} furniture and decor`}
+                fill
+                className="object-contain object-right-bottom transition-transform group-hover:scale-105"
+                sizes="(min-width: 1024px) 25vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 to-transparent">
+                <div className="h-full p-8 flex flex-col justify-end">
+                  <h2 className="font-medium text-xl sm:text-2xl lg:text-3xl text-primary mb-4">
+                    {room}
+                  </h2>
+                  <div className="">
+                    <LinkButton
+                      href={`/${room.toLowerCase()}`}
+                      title="Shop Now"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="h-[10.75rem] lg:h-[16.25rem] relative w-full bg-secondary p-8">
-            <Image
-              src={"/assets/images/kitchen.png"}
-              alt="Kitchen"
-              fill
-              objectFit="contain"
-            />
-            <div className="absolute bottom-8 z-10 space-y-3">
-              <h3 className={"font-medium headline-5"}>Kitchen</h3>
-              <LinkButton href="#" title="Shop Now" />
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

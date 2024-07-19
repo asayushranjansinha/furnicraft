@@ -1,60 +1,112 @@
 import Logo from "@/components/shared/logo";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import Link from "next/link";
 
+const footerLinks = [
+  { href: "/", label: "Home" },
+  { href: "/shop", label: "Shop" },
+  { href: "/product", label: "Product" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact-us", label: "Contact Us" },
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms-of-service", label: "Terms of Service" },
+];
+
+const socialLinks = [
+  { Icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+  { Icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  { Icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+];
+
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-slate-800 py-10">
-      <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 space-y-4">
-        <div className="flex flex-col items-center lg:flex-row gap-6 justify-between">
-          <div className="flex flex-col lg:flex-row items-center gap-4">
-            <Logo className="text-white" />
-            <Separator
-              orientation="vertical"
-              className="hidden lg:block h-6 ml-2 bg-neutral-700"
-            />
-            <h5 className="text-white">Furniture Store</h5>
+    <footer
+      className="bg-slate-800 py-12 text-slate-200"
+      aria-labelledby="footer-heading"
+    >
+      <h2 id="footer-heading" className="sr-only">
+        Footer
+      </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full flex flex-col md:flex-row justify-between items-start gap-8">
+          <div className="space-y-6 max-w-sm">
+            <Logo className="h-10" />
+            <p className="text-sm leading-6">
+              Elevating homes with timeless elegance and comfort since 1990.
+            </p>
+            <div className="flex space-x-6">
+              {socialLinks.map(({ Icon, href, label }) => (
+                <Button key={label} variant="ghost" size="icon" asChild>
+                  <Link
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </Link>
+                </Button>
+              ))}
+            </div>
           </div>
-
-          {/* Navlinks */}
-          <nav
-            aria-label="Footer Navigation"
-            className="flex flex-col lg:flex-row items-center gap-4 text-white"
-          >
-            <Link href="/" className="caption-1 hover:underline">
-              Home
-            </Link>
-            <Link href="/shop" className="caption-1 hover:underline">
-              Shop
-            </Link>
-            <Link href="/product" className="caption-1 hover:underline">
-              Product
-            </Link>
-            <Link href="/blog" className="caption-1 hover:underline">
-              Blog
-            </Link>
-            <Link href="/contact-us" className="caption-1 hover:underline">
-              Contact Us
-            </Link>
-            <Link href="/privacy-policy" className="caption-1 hover:underline">
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms-of-service"
-              className="caption-1 hover:underline"
-            >
-              Terms of Service
-            </Link>
-          </nav>
+          <div className="flex flex-wrap gap-x-12 gap-y-8">
+            <div>
+              <h3 className="text-sm font-semibold leading-6 mb-4">Shop</h3>
+              <ul role="list" className="space-y-3">
+                {footerLinks.slice(0, 3).map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm leading-6 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold leading-6 mb-4">Support</h3>
+              <ul role="list" className="space-y-3">
+                {footerLinks.slice(3).map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm leading-6 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
-
-        <Separator orientation="horizontal" className="bg-neutral-700" />
-
-        <div className="text-center text-white text-sm">
-          &copy; {new Date().getFullYear()} Furnicraft. All rights reserved.
+        <Separator className="my-8 bg-slate-700" />
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4">
+          <p className="text-xs leading-5 text-center md:text-left">
+            &copy; {currentYear} Furnicraft. All rights reserved.
+          </p>
+          <div className="flex gap-4">
+            <Button variant="link" size="sm" asChild>
+              <Link href="/privacy-policy" className="text-slate-200 hover:text-white">
+                Privacy Policy
+              </Link>
+            </Button>
+            <Button variant="link" size="sm" asChild>
+              <Link href="/terms-of-service" className="text-slate-200 hover:text-white">
+                Terms of Service
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </footer>
   );
 };
+
 export default Footer;

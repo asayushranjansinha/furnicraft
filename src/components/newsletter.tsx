@@ -1,63 +1,93 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { MoveRight } from "lucide-react";
 import Image from "next/image";
-import { Input } from "./ui/input";
-import { Mail } from "lucide-react";
-import { Button } from "./ui/button";
 
-const NewsLetter = () => {
+const NewsletterSection = () => {
   return (
-    <section
-      id="newsletter"
-      aria-labelledby="newsletter-heading"
-      className="bg-secondary"
-    >
-      <div className="">
-        <div className="relative h-[360px] bg-secondary flex flex-col space-y-8 items-center justify-center px-8">
+    <section className="overflow-hidden bg-gradient-to-r from-gray-100 to-gray-200">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-6 lg:py-12">
+        {/* Background for smaller screens */}
+        <div className="absolute inset-0 z-0 lg:hidden">
           <Image
-            src="/assets/images/background-lg.png"
-            alt="Newsletter Background"
+            src="/assets/images/newsletter-interior-1.jpg"
+            alt="Stylish Interior"
             fill
-            className="hidden lg:block"
+            sizes="100vw"
+            quality={85}
+            priority
+            className="object-cover opacity-20"
           />
-          <div className="w-full flex flex-col items-center justify-center text-center">
-            <h3 id="newsletter-heading" className="headline-6 relative z-10">
-              Join Our Newsletter
-            </h3>
-            <h5 className="font-inter text-sm leading-[22px] relative z-10 w-2/3 mx-auto">
-              Sign up for deals, new products and promotions
-            </h5>
-          </div>
+        </div>
 
-          <form
-            className="relative border-b-[1.5px] border-black flex items-center gap-x-0.5"
-            aria-label="Newsletter Signup Form"
-          >
-            <Mail size={24} className="text-black" aria-hidden="true" />
-            <label htmlFor="email" className="sr-only">
-              Email Address
-            </label>
-            <Input
-              id="email"
-              type="email"
-              className="bg-transparent border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 pl-6"
-              placeholder="Your email address"
-              required
-              aria-describedby="email-description"
-            />
-            <span id="email-description" className="sr-only">
-              Enter your email address to sign up for the newsletter
-            </span>
-            <Button
-              variant={"ghost"}
-              size={"sm"}
-              className="ml-2"
-              aria-label="Sign Up"
-            >
-              Signup
-            </Button>
-          </form>
+        <div className="relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            {/* Left image for large screens */}
+            <div className="hidden lg:block w-1/4">
+              <div className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-xl transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+                <Image
+                  src="/assets/images/newsletter-interior-1.jpg"
+                  alt="Stylish Interior"
+                  fill
+                  quality={90}
+                  sizes="(min-width: 1024px) 25vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Newsletter subscription form */}
+            <div className="w-full lg:w-2/4 text-center bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
+              <h2 className="headline-7 mb-4">
+                Stay Ahead in Style: Exclusive Updates and Design Tips
+              </h2>
+              <p className="mb-6 text-gray-600">
+                Subscribe to receive exclusive offers, design tips, and
+                inspiration straight to your inbox!
+              </p>
+              <form>
+                <div className="p-1">
+                  <div className="bg-white p-3 flex items-center justify-between border rounded-3xl group transition-all duration-300 ease-in-out hover:shadow-md focus-within:ring-2 focus-within:ring-primary">
+                    <Input
+                      type="email"
+                      placeholder="Enter your email"
+                      aria-label="Email for newsletter"
+                      className="flex-grow bg-transparent rounded-full ring-0 outline-none border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                    />
+                    <Button
+                      type="submit"
+                      className="rounded-full aspect-square p-2 flex items-center justify-center group relative"
+                    >
+                      <span className="sr-only">Subscribe</span>
+                      <MoveRight
+                        size={20}
+                        className="transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </Button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            {/* Right image for large screens */}
+            <div className="hidden lg:block w-1/4">
+              <div className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                <Image
+                  src="/assets/images/newsletter-interior-2.jpg"
+                  alt="Modern Furniture"
+                  fill
+                  sizes="(min-width: 1024px) 25vw"
+                  quality={90}
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 };
-export default NewsLetter;
+
+export default NewsletterSection;

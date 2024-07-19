@@ -101,9 +101,7 @@ const ProductDetailPage = () => {
         {/* Detail */}
         <section className="flex flex-col justify-center space-y-6 py-4 sm:py-6">
           <div>
-            <h1 className="headline-5">
-              {PRODUCTDETAILS.name}
-            </h1>
+            <h1 className="headline-5">{PRODUCTDETAILS.name}</h1>
             <div className="flex items-center mt-2">
               <StarRating
                 rating={PRODUCTDETAILS.rating}
@@ -113,9 +111,7 @@ const ProductDetailPage = () => {
           </div>
 
           <div className="flex items-center space-x-4 headline-6">
-            <span className="">
-              ${discountedPrice}
-            </span>
+            <span className="">${discountedPrice}</span>
             <span className="text-muted-foreground line-through">
               ${PRODUCTDETAILS.price.toFixed(2)}
             </span>
@@ -124,7 +120,9 @@ const ProductDetailPage = () => {
             </Badge>
           </div>
 
-          <p className="body-2 text-muted-foreground">{PRODUCTDETAILS.description}</p>
+          <p className="body-2 text-muted-foreground">
+            {PRODUCTDETAILS.description}
+          </p>
 
           <Separator />
 
@@ -197,33 +195,29 @@ const ProductDetailPage = () => {
           />
 
           {/* Review Input */}
-          <div className="p-1">
-            <div className="p-3 flex items-center justify-between border rounded-3xl group transition-all duration-300 ease-in-out hover:shadow-md focus-within:ring-ring focus-within:ring-2">
-              <Input
-                placeholder="Share your thoughts"
-                aria-label="Give your review"
-                className="flex-grow bg-transparent rounded-full ring-0 outline-none border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-              />
-              <Button className="sm:hidden rounded-full aspect-square p-2 flex items-center justify-center group relative">
-                <MoveRight
-                  size={20}
-                  className="transition-transform duration-300 ease-in-out group-hover:animate-arrow-out absolute"
-                  aria-hidden="true"
+          <form>
+            <div className="p-1">
+              <div className="bg-white p-3 flex items-center justify-between border rounded-3xl group transition-all duration-300 ease-in-out hover:shadow-md focus-within:ring-2 focus-within:ring-primary">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  aria-label="Email for newsletter"
+                  className="flex-grow bg-transparent rounded-full ring-0 outline-none border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
                 />
-                <MoveRight
-                  size={20}
-                  className="transition-transform duration-300 ease-in-out group-hover:animate-arrow-in absolute"
-                  aria-hidden="true"
-                />
-              </Button>
-
-              <Button className="hidden sm:flex rounded-2xl px-4 group overflow-hidden">
-                <span className="transition-transform duration-300 ease-in-out group-hover:animate-text-slide-in relative">
-                  Write Review
-                </span>
-              </Button>
+                <Button
+                  type="submit"
+                  className="rounded-full aspect-square p-2 flex items-center justify-center group relative"
+                >
+                  <span className="sr-only">Subscribe</span>
+                  <MoveRight
+                    size={20}
+                    className="transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Button>
+              </div>
             </div>
-          </div>
+          </form>
 
           {/* Customer Reviews Section */}
           <section className="flex flex-col space-y-3 justify-center items-center">

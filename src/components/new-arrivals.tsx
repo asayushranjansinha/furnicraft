@@ -7,8 +7,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Heart, Star } from "lucide-react";
+import { Heart, ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
+import { mockProducts } from "@/data/constants";
+import Link from "next/link";
+import { Card, CardContent } from "./ui/card";
+import { Badge } from "./ui/badge";
+
 const NewArrivals = () => {
   return (
     <section
@@ -31,67 +36,85 @@ const NewArrivals = () => {
           className="w-full overflow-visible"
         >
           <CarouselContent className="-ml-4 overflow-visible">
-            {Array.from({ length: 4 }).map((_, index) => (
-              <CarouselItem
-                key={index}
-                className="pl-4 basis-[65%] sm:basis-[45%] md:basis-[35%] lg:basis-[28%] xl:basis-[22%]"
-              >
-                <div className="h-60 sm:h-72 lg:h-80 bg-secondary relative p-3">
-                  <Image
-                    src={`/assets/images/image${index + 1}.png`}
-                    alt={`New Arrival ${index + 1}`}
-                    fill
-                    className="object-center"
-                  />
+            {mockProducts.map((product) => {
+              const discount = (product.price * product.currentDiscount) / 100;
+              const newPrice = product.price - discount;
 
-                  <div className="w-full relative z-10 flex justify-between items-center">
-                    <div className="space-y-1">
-                      <div className="px-2 py-1 bg-white hairline-1 uppercase rounded">
-                        New
+              return (
+                <CarouselItem
+                  className="pl-4 basis-[80%] sm:basis-[45%] md:basis-[35%] lg:basis-[28%] xl:basis-[22%]"
+                  key={product.id}
+                >
+                  <Link href={`/products/${product.id}`}>
+                    <Card className="h-full flex flex-col overflow-hidden hover:shadow-md transition-shadow duration-300">
+                      <div className="relative aspect-[4/3]">
+                        <Image
+                          src={product.images[0]}
+                          alt={product.name}
+                          fill
+                          sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw, 22vw"
+                          quality={85}
+                          className="object-cover"
+                        />
+                        {product.currentDiscount > 0 && (
+                          <Badge
+                            variant={"secondary"}
+                            className="absolute top-2 left-2 text-primary"
+                          >
+                            {product.currentDiscount}% Off
+                          </Badge>
+                        )}
                       </div>
-                      <div className="px-2 py-1 bg-green-500 text-white hairline-1 rounded">
-                        -50%
-                      </div>
-                    </div>
+                      <CardContent className="flex-1 p-4 flex flex-col">
+                        <h3 className="text-lg font-semibold mb-2 line-clamp-2">
+                          {product.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                          {product.description}
+                        </p>
 
-                    <div className="h-8 w-8 shrink-0 rounded-full bg-white flex items-center justify-center shadow-sm">
-                      <Heart
-                        size={20}
-                        className="text-neutral-700"
-                        aria-label="Add to Wishlist"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full bg-secondary p-3">
-                  <Button
-                    className="w-full font-inter"
-                    aria-label="Add to cart"
-                  >
-                    Add to cart
-                  </Button>
-                </div>
-                <div className="p-1">
-                  <div className="flex gap-[3px]">
-                    {Array.from({ length: 5 }).map((_, starIndex) => (
-                      <Star
-                        key={starIndex}
-                        className="fill-neutral-700 stroke-neutral-700"
-                        size={20}
-                        aria-label={`Rating Star ${starIndex + 1}`}
-                      />
-                    ))}
-                  </div>
-                  <h4 className="body-2-semibold">Lorem, ipsum.</h4>
-                  <span className="caption-1 font-semibold">
-                    <span>$199.00</span>
-                    <span className="line-through font-normal text-neutral-500 ml-3">
-                      $499.00
-                    </span>
-                  </span>
-                </div>
-              </CarouselItem>
-            ))}
+                        <div className="mt-auto space-y-3">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                            <div className="flex items-center space-x-2 mb-2 sm:mb-0">
+                              <span className="text-xl font-bold">
+                                ${newPrice.toFixed(2)}
+                              </span>
+                              {product.currentDiscount > 0 && (
+                                <span className="text-sm text-muted-foreground line-through">
+                                  ${product.price.toFixed(2)}
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center">
+                              <Star className="w-4 h-4 text-yellow-400 mr-1 fill-current" />
+                              <span className="font-semibold">
+                                {product.rating}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between text-sm text-muted-foreground">
+                            <span className="truncate mr-2">
+                              Brand: {product.brand}
+                            </span>
+                            <span>Stock: {product.stock}</span>
+                          </div>
+                          <div className="flex space-x-2">
+                            <Button className="flex-1" variant="default">
+                              <ShoppingCart className="w-4 h-4 mr-2" />
+                              Add to Cart
+                            </Button>
+                            <Button variant="outline" size="icon">
+                              <Heart className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </CarouselItem>
+              );
+            })}
           </CarouselContent>
           <CarouselPrevious aria-label="Previous slide" />
           <CarouselNext aria-label="Next slide" />
