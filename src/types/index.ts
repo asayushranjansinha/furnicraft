@@ -62,7 +62,10 @@ export interface Product {
 }
 export type HeroCarouselItemTypes = {
     id: number;
-    imageSrc: string;
+    imageSrcLarge: string;
+    imageSrcSmall: string;
     title: string;
+    description: string;
     link: string;
+    altText: string;
 }

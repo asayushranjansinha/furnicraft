@@ -11,6 +11,9 @@ import { heroCarouselImages as carouselItems } from "@/data/constants";
 import Autoplay from "embla-carousel-autoplay";
 
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "./ui/button";
+import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -30,20 +33,44 @@ const HeroSection = () => {
         <CarouselContent>
           {carouselItems.map((image) => (
             <CarouselItem key={image.id}>
-              <div className="relative aspect-[16/9] w-full max-h-[512px] lg:max-h-[400px]">
+            <div className="relative aspect-[16/9] w-full max-h-[548px] overflow-hidden">
+              <div className="hidden md:block">
                 <Image
-                  src={image.imageSrc}
-                  alt={image.title}
+                  src={image.imageSrcLarge}
+                  alt={image.altText || image.title}
                   fill
-
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  sizes="(min-width: 768px) 1280px"
                   quality={90}
                   placeholder="blur"
                   blurDataURL="/assets/images/banner-shop-placeholder.jpg"
-                  />
+                  className="object-cover"
+                />
               </div>
-            </CarouselItem>
+              <div className="md:hidden">
+                <Image
+                  src={image.imageSrcSmall}
+                  alt={image.altText || image.title}
+                  fill
+                  sizes="(max-width: 767px) 640px"
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL="/assets/images/banner-shop-placeholder.jpg"
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/60 to-transparent">
+                <div className="w-full">
+                  <h2 className="text-lg md:text-xl font-semibold text-white mb-2 line-clamp-2">{image.title}</h2>
+                  <Link href={image.link}>
+                    <Button className="bg-white text-black hover:bg-gray-200 transition-colors">
+                      Shop Now
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </CarouselItem>
           ))}
         </CarouselContent>
 
