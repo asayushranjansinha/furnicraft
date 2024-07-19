@@ -24,7 +24,7 @@ const Banner: React.FC = () => {
               HUNDREDS of New lower prices!
             </h2>
             <p className="body-2 lg:body-1 text-gray-600 max-w-lg">
-              It's more affordable than ever to give every room in your home a
+              It&spos;s more affordable than ever to give every room in your home a
               stylish makeover. Discover our latest collection and transform
               your space.
             </p>
