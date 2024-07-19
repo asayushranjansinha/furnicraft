@@ -20,7 +20,7 @@ export default function ContactUsPage() {
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="p-8 bg-indigo-600 text-white">
+              <div className="p-8 bg-blue-400 text-white">
                 <h2 className="headline-5 mb-6">Contact Information</h2>
                 <div className="space-y-4">
                   <ContactInfoItem icon={MapPin} content="123 Furniture Lane, Design City, DC 12345" />
@@ -66,7 +66,7 @@ interface ContactInfoItemProps {
 function ContactInfoItem({ icon: Icon, content }: ContactInfoItemProps) {
   return (
     <div className="flex items-center space-x-3">
-      <div className="bg-indigo-500 p-2 rounded-full">
+      <div className="bg-blue-500 p-2 rounded-full">
         <Icon className="w-5 h-5" />
       </div>
       <p className="text-sm md:text-base">{content}</p>
@@ -81,7 +81,7 @@ interface SocialLinkProps {
 
 function SocialLink({ href, icon: Icon }: SocialLinkProps) {
   return (
-    <a href={href} className="bg-indigo-500 p-2 rounded-full hover:bg-indigo-400 transition-colors">
+    <a href={href} className="bg-blue-500 p-2 rounded-full hover:bg-blue-600 transition-colors">
       <Icon className="w-5 h-5" />
     </a>
   );
