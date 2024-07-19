@@ -9,7 +9,10 @@ const FeaturedProducts = () => {
     >
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Living Room Section */}
-        <div className="relative h-[23rem] lg:h-[34rem] overflow-hidden group">
+        <article
+          className="relative h-[23rem] lg:h-[34rem] overflow-hidden group"
+          aria-label="Stylish living room setup with a modern sofa"
+        >
           <Image
             src="/assets/images/livingroom.jpg"
             alt="Stylish living room setup with a modern sofa"
@@ -20,7 +23,7 @@ const FeaturedProducts = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent group-hover:from-black/70">
             <div className="h-full p-8 flex flex-col justify-end">
-              <h2 className="font-medium text-2xl sm:text-3xl lg:text-4xl text-white mb-4">
+              <h2 className="font-semibold text-3xl lg:text-4xl text-white mb-4">
                 Living Room
               </h2>
               <div>
@@ -32,14 +35,15 @@ const FeaturedProducts = () => {
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
         {/* Bedroom and Kitchen Grid */}
         <div className="grid gap-6">
           {["Bedroom", "Kitchen"].map((room) => (
-            <div
+            <article
               key={room}
-              className="relative h-[10.75rem] lg:h-[16.25rem] overflow-hidden group"
+              className="relative h-[12rem] sm:h-[16rem] md:h-[20rem] lg:h-[16.25rem] overflow-hidden group"
+              aria-label={`${room} furniture and decor`}
             >
               <Image
                 src={`/assets/images/${room.toLowerCase()}.jpg`}
@@ -50,10 +54,10 @@ const FeaturedProducts = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent group-hover:from-black/70">
                 <div className="h-full p-8 flex flex-col justify-end">
-                  <h2 className="font-medium text-xl sm:text-2xl lg:text-3xl text-white mb-4">
+                  <h2 className="font-semibold text-2xl sm:text-3xl lg:text-4xl text-white mb-4">
                     {room}
                   </h2>
-                  <div className="">
+                  <div>
                     <LinkButton
                       href={`/${room.toLowerCase()}`}
                       title="Shop Now"
@@ -62,7 +66,7 @@ const FeaturedProducts = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

@@ -13,8 +13,8 @@ const NewsletterSection = () => {
             src="/assets/images/newsletter-interior-1.jpg"
             alt="Stylish Interior"
             fill
-            sizes="100vw"
-            quality={85}
+            sizes="(max-width: 1023px) 100vw"
+            quality={60}
             priority
             className="object-cover opacity-20"
           />
@@ -23,25 +23,25 @@ const NewsletterSection = () => {
         <div className="relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             {/* Left image for large screens */}
-            <div className="hidden lg:block w-1/4">
-              <div className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-xl transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+            <figure className="hidden lg:block w-1/4">
+              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-xl transform -rotate-3 hover:rotate-0 transition-transform duration-300">
                 <Image
                   src="/assets/images/newsletter-interior-1.jpg"
                   alt="Stylish Interior"
                   fill
-                  quality={90}
                   sizes="(min-width: 1024px) 25vw"
+                  quality={85}
                   className="object-cover"
                 />
               </div>
-            </div>
+            </figure>
 
             {/* Newsletter subscription form */}
-            <div className="w-full lg:w-2/4 text-center bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
-              <h2 className="headline-7 mb-4">
+            <div className="w-full lg:w-2/4 text-center bg-white bg-opacity-90 p-8 rounded-3xl shadow-lg">
+              <h2 className="text-2xl font-medium sm:text-3xl tracking-tight mb-4">
                 Stay Ahead in Style: Exclusive Updates and Design Tips
               </h2>
-              <p className="mb-6 text-gray-600">
+              <p className="mb-6 text-gray-600 text-base">
                 Subscribe to receive exclusive offers, design tips, and
                 inspiration straight to your inbox!
               </p>
@@ -52,7 +52,7 @@ const NewsletterSection = () => {
                       type="email"
                       placeholder="Enter your email"
                       aria-label="Email for newsletter"
-                      className="flex-grow bg-transparent rounded-full ring-0 outline-none border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
+                      className="flex-grow bg-transparent rounded-full ring-0 outline-none border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 px-4 text-base"
                     />
                     <Button
                       type="submit"
@@ -71,18 +71,18 @@ const NewsletterSection = () => {
             </div>
 
             {/* Right image for large screens */}
-            <div className="hidden lg:block w-1/4">
-              <div className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
+            <figure className="hidden lg:block w-1/4">
+              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
                 <Image
                   src="/assets/images/newsletter-interior-2.jpg"
                   alt="Modern Furniture"
                   fill
                   sizes="(min-width: 1024px) 25vw"
-                  quality={90}
+                  quality={85}
                   className="object-cover"
                 />
               </div>
-            </div>
+            </figure>
           </div>
         </div>
       </div>

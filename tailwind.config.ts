@@ -24,18 +24,6 @@ const config = {
         poppins: ['var(--font-poppins)'],
         grotesk: ['var(--font-grotesk)']
       },
-      fontSize: {
-        'hairline-1': ['16px', { lineHeight: '16px', letterSpacing: '0px' }],
-        'headline-4': ['40px', { lineHeight: '44px', letterSpacing: '-0.4px' }],
-        'headline-5': ['34px', { lineHeight: '38px', letterSpacing: '-0.6px' }],
-        'headline-6': ['28px', { lineHeight: '34px', letterSpacing: '-0.6px' }],
-        'headline-7': ['20px', { lineHeight: '28px', letterSpacing: '0px' }],
-        'body-2': ['16px', { lineHeight: '26px', letterSpacing: '0px' }],
-        'caption-1': ['14px', { lineHeight: '22px', letterSpacing: '0px' }],
-        'caption-2': ['12px', { lineHeight: '20px', letterSpacing: '0px' }],
-        'button-xs': ['14px', { lineHeight: '24px', letterSpacing: '0px' }],
-        'button-sm': ['16px', { lineHeight: '28px', letterSpacing: '-0.4px' }],
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

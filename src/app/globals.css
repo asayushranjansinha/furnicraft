@@ -93,51 +93,16 @@ input:-webkit-autofill:active {
 }
 
 @layer components {
-  .headline-4 {
-    @apply font-poppins text-headline-4 font-medium;
-  }
-
-  .headline-5 {
-    @apply font-poppins text-headline-5 font-medium;
-  }
-
-  .headline-6 {
-    @apply font-poppins text-headline-6 font-medium;
-  }
-
-  .body-2 {
-    @apply font-inter text-body-2;
-  }
-
-  .body-2-semibold {
-    @apply font-inter text-body-2 font-semibold;
-  }
-
   .logo {
-    @apply font-monainn text-2xl;
+    @apply font-monainn text-2xl sm:text-3xl tracking-wider px-3 py-1 rounded-md;
   }
 
-  .caption-1 {
-    @apply font-inter text-caption-1;
+  .main-navlink {
+    @apply font-medium text-lg text-muted-foreground px-3 py-2 font-grotesk rounded-md hover:text-black transition-colors;
   }
 
-  .caption-2 {
-    @apply font-inter text-caption-2 font-semibold;
+  .mobile-navlink {
+    @apply font-medium text-lg text-muted-foreground py-2 font-grotesk hover:text-black transition-colors;
   }
 
-  .button-xs {
-    @apply font-inter text-button-xs font-medium;
-  }
-
-  .button-sm {
-    @apply font-medium font-inter text-button-sm;
-  }
-
-  .hairline-1 {
-    @apply font-bold font-inter text-hairline-1;
-  }
-
-  .headline-7 {
-    @apply font-medium font-poppins text-headline-7;
-  }
 }

@@ -21,7 +21,7 @@ export default function ContactUsPage() {
           <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <div className="p-8 bg-blue-400 text-white">
-                <h2 className="headline-5 mb-6">Contact Information</h2>
+                <h1 className="text-3xl font-poppins font-semibold line-clamp-2 mb-6">Contact Information</h1>
                 <div className="space-y-4">
                   <ContactInfoItem icon={MapPin} content="123 Furniture Lane, Design City, DC 12345" />
                   <ContactInfoItem icon={Phone} content="(+91) 8709415598" />
@@ -29,7 +29,7 @@ export default function ContactUsPage() {
                   <ContactInfoItem icon={Clock} content="Mon-Fri: 9AM-6PM, Sat: 10AM-4PM, Sun: Closed" />
                 </div>
                 <div className="mt-8">
-                  <h3 className="headline-7 mb-4">Connect With Us</h3>
+                  <h4 className="text-2xl font-poppins font-medium mb-4">Connect With Us</h4>
                   <div className="flex space-x-4">
                     <SocialLink href="#" icon={Facebook} />
                     <SocialLink href="#" icon={Twitter} />
@@ -38,7 +38,7 @@ export default function ContactUsPage() {
                 </div>
               </div>
               <div className="p-8">
-                <h2 className="headline-5 mb-6">Send us a message</h2>
+                <h4 className="text-2xl font-poppins font-medium mb-6">Send us a message</h4>
                 <form className="space-y-4">
                   <Input placeholder="Your Name" className="rounded-full" />
                   <Input type="email" placeholder="Your Email" className="rounded-full" />

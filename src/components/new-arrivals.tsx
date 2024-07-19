@@ -7,33 +7,37 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { mockProducts } from "@/data/constants";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
-import { mockProducts } from "@/data/constants";
 import Link from "next/link";
-import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { Card, CardContent } from "./ui/card";
 
 const NewArrivals = () => {
   return (
     <section
       id="new-arrivals"
       className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-8"
+      aria-labelledby="new-arrivals-heading"
     >
-      <div className="flex justify-between items-end">
-        <h2 id="new-arrivals-heading" className="headline-5">
+      <header className="flex justify-between items-end">
+        <h2
+          id="new-arrivals-heading"
+          className="text-2xl font-medium sm:text-3xl tracking-tight"
+        >
           New Arrivals
         </h2>
-        <LinkButton href="#" title="More Products" />
-      </div>
+        <LinkButton href="#" title="See more" className="text-base" />
+      </header>
 
-      <div className="py-6 overflow-hidden">
+      <div className="overflow-hidden">
         <Carousel
           opts={{
             align: "start",
             loop: true,
           }}
-          className="w-full overflow-visible"
+          className="w-full overflow-visible py-4 px-1 select-none"
         >
           <CarouselContent className="-ml-4 overflow-visible">
             {mockProducts.map((product) => {
@@ -74,20 +78,20 @@ const NewArrivals = () => {
                         </p>
 
                         <div className="mt-auto space-y-3">
-                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                          <div className="flex flex-row items-center justify-between">
                             <div className="flex items-center space-x-2 mb-2 sm:mb-0">
-                              <span className="text-xl font-bold">
+                              <span className="text-lg font-medium font-poppins">
                                 ${newPrice.toFixed(2)}
                               </span>
                               {product.currentDiscount > 0 && (
-                                <span className="text-sm text-muted-foreground line-through">
+                                <span className="text-sm font-poppins text-muted-foreground line-through">
                                   ${product.price.toFixed(2)}
                                 </span>
                               )}
                             </div>
                             <div className="flex items-center">
                               <Star className="w-4 h-4 text-yellow-400 mr-1 fill-current" />
-                              <span className="font-semibold">
+                              <span className="text-sm font-semibold">
                                 {product.rating}
                               </span>
                             </div>
@@ -100,7 +104,10 @@ const NewArrivals = () => {
                             <span>Stock: {product.stock}</span>
                           </div>
                           <div className="flex space-x-2">
-                            <Button className="flex-1" variant="default">
+                            <Button
+                              className="flex-1 text-sm"
+                              variant="default"
+                            >
                               <ShoppingCart className="w-4 h-4 mr-2" />
                               Add to Cart
                             </Button>
@@ -123,4 +130,5 @@ const NewArrivals = () => {
     </section>
   );
 };
+
 export default NewArrivals;

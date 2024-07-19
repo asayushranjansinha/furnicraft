@@ -55,12 +55,12 @@ const ProductList = ({
                     )}
                   </div>
                   <CardContent className="p-3 flex flex-col flex-grow">
-                    <h3 className="headline-7 line-clamp-2 mb-2">
+                    <h3 className="text-lg font-semibold line-clamp-2 mb-2">
                       {product.name}
                     </h3>
                     <div className="flex items-center justify-between mb-2 mt-auto">
-                      <div className="flex flex-col items-center body-2">
-                        <span className="ml-0 font-bold text-primary">
+                      <div className="flex flex-col items-center">
+                        <span className="ml-0 font-bold text-primary text-base">
                           ${newPrice.toFixed(2)}
                         </span>
                         {product.currentDiscount > 0 && (
@@ -71,7 +71,9 @@ const ProductList = ({
                       </div>
                       <div className="flex items-center">
                         <span className="text-yellow-400 mr-1">★</span>
-                        <span className="font-semibold">{product.rating}</span>
+                        <span className="font-semibold text-sm">
+                          {product.rating}
+                        </span>
                       </div>
                     </div>
                     <Button variant="outline" size="sm" className="w-full mt-2">
@@ -121,18 +123,18 @@ const ProductList = ({
                     <div className="mt-auto space-y-3">
                       <div className="flex flex-row items-center justify-between">
                         <div className="flex items-center space-x-2 mb-2 sm:mb-0">
-                          <span className="text-xl font-bold">
+                          <span className="text-lg font-medium font-poppins">
                             ${newPrice.toFixed(2)}
                           </span>
                           {product.currentDiscount > 0 && (
-                            <span className="text-sm text-muted-foreground line-through">
+                            <span className="text-sm font-poppins text-muted-foreground line-through">
                               ${product.price.toFixed(2)}
                             </span>
                           )}
                         </div>
                         <div className="flex items-center">
                           <Star className="w-4 h-4 text-yellow-400 mr-1 fill-current" />
-                          <span className="font-semibold">
+                          <span className="text-sm font-semibold">
                             {product.rating}
                           </span>
                         </div>
@@ -145,7 +147,7 @@ const ProductList = ({
                         <span>Stock: {product.stock}</span>
                       </div>
                       <div className="flex space-x-2">
-                        <Button className="flex-1" variant="default">
+                        <Button className="flex-1 text-sm" variant="default">
                           <ShoppingCart className="w-4 h-4 mr-2" />
                           Add to Cart
                         </Button>
@@ -180,7 +182,7 @@ const ProductList = ({
                       />
                     </div>
                     <div className="flex flex-col">
-                      <span className="font-medium text-sm line-clamp-1 group-hover:text-primary transition-colors duration-200">
+                      <span className="font-semibold text-lg line-clamp-1 group-hover:text-primary transition-colors duration-200">
                         {product.name}
                       </span>
                       <span className="text-xs text-muted-foreground">

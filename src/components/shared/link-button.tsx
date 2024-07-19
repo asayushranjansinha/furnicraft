@@ -32,7 +32,11 @@ const LinkButton: React.FC<LinkButtonProps> = ({
         target="_blank"
         rel="noopener noreferrer"
       >
-        <span className="button-xs lg:button-sm mr-1">{title}</span>
+        <span
+          className={cn("mr-1 font-medium text-lg font-poppins", className)}
+        >
+          {title}
+        </span>
         <Icon size={20} aria-hidden="true" />
         <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-current transition-all duration-300 group-hover:w-full" />
         <span className="sr-only">(opens in a new tab)</span>
