@@ -3,10 +3,7 @@ import LinkButton from "./shared/link-button";
 
 const Banner: React.FC = () => {
   return (
-    <section
-      id="banner"
-      className="bg-blue-50 py-4 sm:py-6 md:py-8"
-    >
+    <section id="banner" className="bg-blue-50 py-4 sm:py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="group relative aspect-[4/3] lg:aspect-[16/9] w-full overflow-hidden">
@@ -29,8 +26,8 @@ const Banner: React.FC = () => {
             <p className="font-poppins text-base text-gray-600 max-w-lg">
               Discover exquisite designs and premium quality furniture that
               transforms every room. Our latest collection brings you unmatched
-              elegance and comfort at prices you'll love. Redefine your space
-              with our stylish and affordable pieces.
+              elegance and comfort at prices you&apos;ll love. Redefine your
+              space with our stylish and affordable pieces.
             </p>
             <div className="pt-4">
               <LinkButton href="#" title="Shop Now" />

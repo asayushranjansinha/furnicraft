@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import NavbarMobile from "./navbar-mobile";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import UserProfile from "./user-profile";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -24,7 +25,7 @@ const Navbar = () => {
       >
         <div className="flex items-center">
           <NavbarMobile />
-          <Logo className="-ml-3 mt-[2px] sm:ml-0 sm:mt-0"/>
+          <Logo className="-ml-3 mt-[2px] sm:ml-0 sm:mt-0" />
         </div>
 
         {/* Main Navigation */}
@@ -75,7 +76,7 @@ const Navbar = () => {
           className="flex items-center space-x-1"
           role="menubar"
         >
-          <li id="nav-search" role="none" className="hidden md:block">
+          <li id="nav-search" role="none" className="hidden lg:block">
             <Button variant="ghost" aria-label="Search" role="button">
               <Search size={24} strokeWidth="1px" />
             </Button>
@@ -84,20 +85,13 @@ const Navbar = () => {
             id="separator-1"
             orientation="vertical"
             aria-hidden="true"
-            className="hidden md:block h-5"
+            className="hidden lg:block h-5"
           />
           <li id="nav-user" role="none" className="hidden md:block">
-            <Button
-              variant="ghost"
-              className="h-fit w-fit px-3 py-2"
-              aria-label="User Account"
-              role="button"
-            >
-              <User size={24} strokeWidth="1px" />
-            </Button>
+            <UserProfile />
           </li>
           <Separator
-            id="separator-2"
+            id="separator-3"
             orientation="vertical"
             aria-hidden="true"
             className="hidden md:block h-5"
