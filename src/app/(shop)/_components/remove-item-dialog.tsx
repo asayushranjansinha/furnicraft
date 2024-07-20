@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { Trash, X } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -45,7 +45,7 @@ export const RemoveItemDialog: React.FC<RemoveItemDialogProps> = ({
           aria-label={`Remove ${item.name} from cart`}
           className="text-gray-400 hover:text-red-500 transition-colors"
         >
-          <X className="h-5 w-5" />
+          <Trash className="h-5 w-5" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

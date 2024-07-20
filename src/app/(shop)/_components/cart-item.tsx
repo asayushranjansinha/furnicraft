@@ -21,9 +21,11 @@ export const CartItem: React.FC<CartItemProps> = ({
   }
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-      <CartItemImage item={item} />
-      <CartItemDetails item={item} />
       <div className="flex items-center space-x-4">
+        <CartItemImage item={item} />
+        <CartItemDetails item={item} />
+      </div>
+      <div className="flex items-center space-x-4 justify-between">
         <QuantityControl
           quantity={item.quantity}
           onChange={(newQuantity) => updateQuantity(item.id, newQuantity)}
@@ -54,8 +56,16 @@ const CartItemImage: React.FC<{ item: CartItemType }> = ({ item }) => (
 const CartItemDetails: React.FC<{ item: CartItemType }> = ({ item }) => (
   <div>
     <h3 className="font-semibold text-lg">{item.name}</h3>
-    <p className="text-sm text-muted-foreground mt-1">
-      ${item.price.toFixed(2)} each
+    <p className="text-base text-muted-foreground mt-1">
+      ${item.price.toFixed(2)}
     </p>
+    <dl>
+      <div className="flex items-center justify-between space-x-3">
+        <dt className="text-muted-foreground font-medium">Total:</dt>
+        <dd className="text-muted-foreground font-medium">
+          ${(item.price * item.quantity).toFixed(2)}
+        </dd>
+      </div>
+    </dl>
   </div>
 );

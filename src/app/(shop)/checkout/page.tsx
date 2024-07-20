@@ -1,105 +1,125 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check } from "lucide-react";
-import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import type { StepItem } from "@/components/ui/stepper";
+import { Step, Stepper, useStepper } from "@/components/ui/stepper";
+import { CircleCheck, CreditCard, Package } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import ConfirmOrder from "../_components/confirm-order";
-import Payment from "../_components/payment";
 import OrderPlaced from "../_components/order-placed";
+import Payment from "../_components/payment";
 
-const stages = ["Confirm", "Payment", "Placed"];
-type Stage = (typeof stages)[number];
+const steps = [
+  { label: "Confirm Order", icon: CircleCheck },
+  { label: "Payment", icon: CreditCard },
+  { label: "Order Placed", icon: Package },
+] satisfies StepItem[];
 
 export default function CheckoutPage() {
-  const [currentStage, setCurrentStage] = useState(0);
-  const [completedStages, setCompletedStages] = useState<number[]>([]);
-
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    if (currentStage > 0) {
-      setCompletedStages((prev) => [...prev, currentStage - 1]);
-    }
-  }, [currentStage]);
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
 
-  const getStageComponent = () => {
-    switch (currentStage) {
-      case 0:
-        return <ConfirmOrder onNext={() => setCurrentStage(1)} />;
-      case 1:
-        return (
-          <Payment
-            onNext={() => setCurrentStage(2)}
-            onBack={() => setCurrentStage(0)}
-          />
-        );
-      case 2:
-        return <OrderPlaced />;
-      default:
-        return null;
-    }
-  };
-
+    // Cleanup function to clear the timeout if the component unmounts
+    return () => clearTimeout(timer);
+  }, []);
   return (
-    <main className="flex-1">
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
-            Checkout
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex justify-between mb-8 relative">
-            {stages.map((stage, index) => (
-              <div
-                key={stage}
-                className="flex flex-col items-center w-1/3 z-10"
-              >
-                <motion.div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
-                    completedStages.includes(index) || index === currentStage
-                      ? "bg-green-500 border-green-500 text-white"
-                      : "border-gray-300 text-gray-300"
-                  }`}
-                  initial={{ scale: 1 }}
-                  animate={{
-                    scale:
-                      completedStages.includes(index) || index === currentStage
-                        ? [1, 1.1, 1]
-                        : 1,
-                  }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {completedStages.includes(index) ? (
-                    <Check className="w-6 h-6" />
-                  ) : (
-                    index + 1
-                  )}
-                </motion.div>
-                <div
-                  className={`mt-2 text-sm ${
-                    completedStages.includes(index) || index === currentStage
-                      ? "text-gray-700"
-                      : "text-gray-400"
-                  }`}
-                >
-                  {stage}
-                </div>
-              </div>
-            ))}
-            <div className="absolute top-5 left-0 w-full h-1 bg-gray-200">
-              <motion.div
-                className="h-full bg-green-500"
-                initial={{ width: "0%" }}
-                animate={{
-                  width: `${(currentStage / (stages.length - 1)) * 100}%`,
-                }}
-                transition={{ duration: 0.5 }}
-              />
-            </div>
-          </div>
+    <div className="flex w-full flex-col gap-4">
+      {isLoaded ? (
+        <Stepper
+          responsive={true}
+          initialStep={0}
+          steps={steps}
+          // scrollTracking
+        >
+          {steps.map((stepProps, index) => {
+            switch (index) {
+              case 0:
+                return (
+                  <Step key={stepProps.label} {...stepProps}>
+                    <ConfirmOrder />
+                    <StepButtons />
+                  </Step>
+                );
+              case 1:
+                return (
+                  <Step key={stepProps.label} {...stepProps}>
+                    <Payment />
+                    <StepButtons />
+                  </Step>
+                );
+              case 2:
+                return (
+                  <Step key={stepProps.label} {...stepProps}>
+                    <OrderPlaced />
+                    <StepButtons />
+                  </Step>
+                );
+              default:
+                return null;
+            }
+          })}
+        </Stepper>
+      ) : (
+        <StepperSkeleton />
+      )}
+    </div>
+  );
+}
 
-          <div className="mt-8">{getStageComponent()}</div>
-        </CardContent>
-      </Card>
-    </main>
+function StepperSkeleton() {
+  return (
+    <div className="space-y-4">
+      {[...Array(3)].map((_, index) => (
+        <div key={index} className="flex items-center space-x-4">
+          <Skeleton className="h-10 w-10 rounded-full" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[100px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function StepButtons() {
+  const router = useRouter();
+
+  const { nextStep, prevStep, isLastStep, activeStep } = useStepper();
+
+  function handlePrevStep() {
+    if (activeStep === 0) {
+      router.push("/cart");
+    } else {
+      prevStep();
+    }
+  }
+  function handleNextStep() {
+    if (isLastStep) {
+      nextStep();
+      router.push("/");
+    } else {
+      nextStep();
+    }
+  }
+  console.log(activeStep);
+  return (
+    <div className="mb-4 flex w-full gap-2">
+      <Button
+        disabled={activeStep === 2}
+        onClick={handlePrevStep}
+        size="sm"
+        variant="secondary"
+      >
+        Back
+      </Button>
+      <Button size="sm" onClick={handleNextStep}>
+        {isLastStep ? "Return Home" : "Continue"}
+      </Button>
+    </div>
   );
 }

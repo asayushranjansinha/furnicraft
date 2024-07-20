@@ -20,12 +20,8 @@ export const PromoCodeSection: React.FC = () => {
     <div className="h-10 relative">
       <AnimatePresence mode="wait">
         {!showPromoInput ? (
-          <motion.div
+          <div
             key="promo-button"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
             className="flex items-center justify-between text-sm absolute inset-0"
           >
             <span className="text-muted-foreground">Have a promo code?</span>
@@ -37,7 +33,7 @@ export const PromoCodeSection: React.FC = () => {
             >
               Apply
             </Button>
-          </motion.div>
+          </div>
         ) : (
           <motion.div
             key="promo-input"

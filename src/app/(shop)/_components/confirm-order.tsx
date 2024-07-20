@@ -1,16 +1,8 @@
-"use client";
-import React from 'react';
-import { Button } from "@/components/ui/button";
+import React from "react";
 
-
-interface ConfirmOrderProps {
-    onNext: () => void;
-  }
-const ConfirmOrder:React.FC<ConfirmOrderProps> = ({ onNext }) => (
+const ConfirmOrder: React.FC = () => (
   <div>
     <h2 className="text-xl font-semibold mb-4">Confirm Your Order</h2>
-    {/* Add order summary and confirmation details here */}
-    <Button onClick={onNext} className="mt-4">Proceed to Payment</Button>
   </div>
 );
 

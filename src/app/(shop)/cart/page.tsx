@@ -61,13 +61,13 @@ export default function CartPage() {
 
   return (
     <main className="flex-1">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid lg:grid-cols-3 gap-6">
         <section className="h-full col-span-full lg:col-span-2">
           <Card className="h-full rounded-3xl shadow-md">
-            <CardHeader className="flex flex-row items-center justify-between bg-gray-50 rounded-t-3xl">
+            <CardHeader className="flex flex-row items-center justify-between rounded-t-3xl">
               <CardTitle className="text-xl font-semibold">
-                Your Cart{" "}
-                <span className="text-sm font-normal text-muted-foreground">
+                Your Cart
+                <span className="text-sm font-medium text-muted-foreground ml-2">
                   ({cartItems.length} items)
                 </span>
               </CardTitle>
@@ -101,7 +101,7 @@ export default function CartPage() {
             </CardContent>
           </Card>
         </section>
-        <aside className="col-span-full lg:col-span-1">
+        <aside className="col-span-full max-lg:max-w-sm lg:col-span-1">
           <OrderSummary total={total} />
         </aside>
       </div>
