@@ -1,18 +1,18 @@
 "use client";
 
-import React from "react";
-import { usePathname } from "next/navigation";
-import { Home } from "lucide-react";
 import {
   Breadcrumb,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb";
+import { Home } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 const MAX_VISIBLE_SEGMENTS = 4;
 
