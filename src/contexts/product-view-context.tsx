@@ -2,32 +2,38 @@
 import { ProductListViewNameEnum } from '@/types';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-interface ProductsViewContextType {
+interface ViewContextType {
   currentView: ProductListViewNameEnum;
   setCurrentView: (view: ProductListViewNameEnum) => void;
 }
 
-const ProductsViewContext = createContext<ProductsViewContextType | undefined>(undefined);
+const ViewContext = createContext<ViewContextType | undefined>(undefined);
 
 export const ProductsViewProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [currentView, setCurrentView] = useState<ProductListViewNameEnum>(() => {
-    const savedView = localStorage.getItem('currentView');
-    return savedView ? JSON.parse(savedView) : ProductListViewNameEnum.GridView;
-  });
+  const [currentView, setCurrentView] = useState<ProductListViewNameEnum>(ProductListViewNameEnum.GridView);
 
   useEffect(() => {
+    // This effect runs only on the client side
+    const savedView = localStorage.getItem('currentView');
+    if (savedView) {
+      setCurrentView(JSON.parse(savedView));
+    }
+  }, []);
+
+  useEffect(() => {
+    // This effect also runs only on the client side
     localStorage.setItem('currentView', JSON.stringify(currentView));
   }, [currentView]);
 
   return (
-    <ProductsViewContext.Provider value={{ currentView, setCurrentView }}>
+    <ViewContext.Provider value={{ currentView, setCurrentView }}>
       {children}
-    </ProductsViewContext.Provider>
+    </ViewContext.Provider>
   );
 };
 
 export const useView = () => {
-  const context = useContext(ProductsViewContext);
+  const context = useContext(ViewContext);
   if (context === undefined) {
     throw new Error('useView must be used within a ViewProvider');
   }
