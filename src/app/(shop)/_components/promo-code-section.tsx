@@ -67,9 +67,9 @@ export const PromoCodeSection: React.FC<Props> = ({
             transition={{ duration: 0.3 }}
             className="flex items-center justify-between text-sm absolute inset-0"
           >
-            <span className="text-muted-foreground  text-emerald-500 font-semibold">
-              Promo "{appliedPromoCode}" applied! ({discountRate}% off)
-            </span>
+            <p class="text-muted-foreground text-emerald-500 font-semibold">
+              Promo &quot;{appliedPromoCode}&quot; applied! ({discountRate}% off)
+            </p>
             <Button size="sm" variant={"link"} onClick={handleRemovePromo}>
               <X size={20} />
             </Button>
