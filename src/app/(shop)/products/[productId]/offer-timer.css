@@ -3,7 +3,7 @@
     --fcc-flip-duration: 0.5s;
   
     /* Width of each digit block */
-    --fcc-digit-block-width: 36px;
+    --fcc-digit-block-width: 30px;
   
     /* Height of each digit block */
     --fcc-digit-block-height: 50px;
@@ -39,8 +39,10 @@
   /* Styles for screens 380px and thinner */
   @media (max-width: 380px) {
     .flip-clock {
-      --fcc-digit-block-width: 30px;    
-      --fcc-digit-block-height: 50px;
+      --fcc-digit-block-width: 25px;    
+      --fcc-digit-block-height: 40px;
+      --fcc-label-font-size: 12px;
+
     }
   }
   @media (min-width: 480px) {
@@ -70,7 +72,7 @@
       --fcc-digit-block-width: 60px;
       --fcc-digit-block-height: 70px;
       --fcc-digit-font-size: 40px;
-      --fcc-label-font-size: 16px;
+      --fcc-label-font-size: 18px;
       --fcc-separator-size: 8px;
     }
   }
@@ -78,8 +80,8 @@
   /* Styles for screens 1024px and wider */
   @media (min-width: 1024px) {
     .flip-clock {
-      --fcc-digit-block-width: 45px;
-      --fcc-digit-block-height: 75px;
+      --fcc-digit-block-width: 40px;
+      --fcc-digit-block-height: 70px;
       --fcc-digit-font-size: 36px;
       --fcc-label-font-size: 15px;
       --fcc-separator-size: 9px;

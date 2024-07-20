@@ -109,7 +109,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ customOptions }) => {
           ))}
         </div>
       </div>
-      <div className="mt-4 overflow-hidden" ref={emblaThumbsRef}>
+      <div className="mt-6 overflow-hidden" ref={emblaThumbsRef}>
         <div className="flex">
           {PRODUCTDETAILS.images.map((image, index) => (
             <div

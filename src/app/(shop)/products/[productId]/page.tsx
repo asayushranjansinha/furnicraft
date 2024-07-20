@@ -1,16 +1,23 @@
 "use client";
 import StarRating from "@/components/shared/star-rating";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Heart, Minus, MoveRight, Plus, ShoppingCart } from "lucide-react";
-import { FAQs } from "./faq-section";
-import ProductCarousel from "./product-carousel";
-import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
 import "@leenguyen/react-flip-clock-countdown/dist/index.css";
+import {
+  Heart,
+  Minus,
+  MoveRight,
+  Plus,
+  ShoppingCart,
+  Star,
+} from "lucide-react";
+import { FAQs } from "./faq-section";
 import OfferTimer from "./offer-timer";
-import { Badge } from "@/components/ui/badge";
+import ProductCarousel from "./product-carousel";
+import React from "react";
 
 const reviews = [
   {
@@ -93,144 +100,156 @@ const ProductDetailPage = () => {
   ).toFixed(2);
 
   return (
-    <div className="overflow-hidden">
-      {/* Product section */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-x-6">
+    <div className="space-y-3">
+      <section className="grid grid-cols-1 gap-y-6 lg:gap-x-6 lg:gap-y-0 lg:grid-cols-2">
         <ProductCarousel />
-
-        {/* Detail */}
-        <section className="flex flex-col justify-center space-y-6 py-4 sm:py-6">
-          <div>
-            <h1 className="headline-5">{PRODUCTDETAILS.name}</h1>
-            <div className="flex items-center mt-2">
-              <StarRating
-                rating={PRODUCTDETAILS.rating}
-                numberOfReviews={PRODUCTDETAILS.reviews}
-              />
+        <article className="flex flex-col justify-center space-y-4">
+          <header className="space-y-2">
+            <h1 className="font-poppins text-2xl font-medium sm:font-semibold md:text-3xl">
+              {PRODUCTDETAILS.name}
+            </h1>
+            <div
+              className="flex items-center space-x-4"
+              aria-label="Product pricing"
+            >
+              <h2 className="text-xl md:font-semibold lg:text-2xl font-medium font-poppins">
+                ${discountedPrice}
+              </h2>
+              <h3 className="text-xl md:font-semibold lg:text-2xl font-medium font-poppins text-muted-foreground line-through">
+                ${PRODUCTDETAILS.price.toFixed(2)}
+              </h3>
+              <Badge variant="destructive" aria-label="Discount percentage">
+                {PRODUCTDETAILS.currentDiscount}% OFF
+              </Badge>
             </div>
-          </div>
+            <div
+              className="flex items-center space-x-4"
+              aria-label="Product rating"
+            >
+              <div className="flex items-center">
+                <Star
+                  className="w-5 h-5 text-yellow-400 mr-1 fill-current"
+                  aria-hidden="true"
+                />
+                <span className="text-base font-semibold">
+                  {PRODUCTDETAILS.rating}
+                </span>
+              </div>
+              <span className="text-sm text-muted-foreground">
+                ({PRODUCTDETAILS.reviews} reviews)
+              </span>
+            </div>
+          </header>
 
-          <div className="flex items-center space-x-4 headline-6">
-            <span className="">${discountedPrice}</span>
-            <span className="text-muted-foreground line-through">
-              ${PRODUCTDETAILS.price.toFixed(2)}
-            </span>
-            <Badge variant="destructive" className="caption-2 font-semibold">
-              {PRODUCTDETAILS.currentDiscount}% OFF
-            </Badge>
+          <div className="space-y-4">
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              {PRODUCTDETAILS.description}
+            </p>
           </div>
-
-          <p className="body-2 text-muted-foreground">
-            {PRODUCTDETAILS.description}
-          </p>
 
           <Separator />
-
           <OfferTimer />
-
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div>
-              <span className="font-semibold">Brand:</span>{" "}
-              {PRODUCTDETAILS.brand}
-            </div>
-            <div>
-              <span className="font-semibold">Category:</span>{" "}
-              {PRODUCTDETAILS.category}
-            </div>
-            <div>
-              <span className="font-semibold">SKU:</span> {PRODUCTDETAILS.sku}
-            </div>
-            <div>
-              <span className="font-semibold">Weight:</span>{" "}
-              {PRODUCTDETAILS.weight} kg
-            </div>
-            <div>
-              <span className="font-semibold">In Stock:</span>{" "}
-              {PRODUCTDETAILS.stock} units
-            </div>
-          </div>
-
           <Separator />
 
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center border rounded-md">
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Decrease Quantity"
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <span className="px-4 py-2 text-sm font-semibold">1</span>
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Increase Quantity"
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
-            <Button variant="default" className="flex-grow">
-              <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+          <div className="flex flex-col space-y-3">
+            <Button
+              variant="default"
+              className="flex-grow"
+              aria-label="Add to Cart"
+            >
+              <ShoppingCart className="mr-2 h-5 w-5" aria-hidden="true" /> Add
+              to Cart
             </Button>
-            <Button variant="outline" size="icon" aria-label="Add to Wishlist">
-              <Heart className="h-4 w-4" />
+            <Button
+              variant="outline"
+              className="flex-grow"
+              aria-label="Add to Wishlist"
+            >
+              <Heart className="mr-2 h-5 w-5" aria-hidden="true" /> Add to
+              Wishlist
             </Button>
           </div>
-        </section>
+        </article>
       </section>
 
-      <section className="border-t">
-        {/* FAQs */}
+      <Separator />
+
+      <section className="space-y-4" aria-labelledby="product-details-heading">
+        <h2
+          id="product-details-heading"
+          className="text-xl md:font-semibold md:text-2xl font-medium font-poppins"
+        >
+          Product Details
+        </h2>
+        <dl className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm md:text-base">
+          <div className="bg-gray-50 p-4 rounded flex items-center space-x-3">
+            <dt className="font-medium">Brand:</dt>
+            <dd className="font-medium text-muted-foreground">
+              {PRODUCTDETAILS.brand}
+            </dd>
+          </div>
+          <div className="bg-gray-50 p-4 rounded flex items-center space-x-3">
+            <dt className="font-medium">Category:</dt>
+            <dd className="font-medium text-muted-foreground">
+              {PRODUCTDETAILS.category}
+            </dd>
+          </div>
+          <div className="bg-gray-50 p-4 rounded flex items-center space-x-3">
+            <dt className="font-medium">SKU:</dt>
+            <dd className="font-medium text-muted-foreground">
+              {PRODUCTDETAILS.sku}
+            </dd>
+          </div>
+          <div className="bg-gray-50 p-4 rounded flex items-center space-x-3">
+            <dt className="font-medium">Weight:</dt>
+            <dd className="font-medium text-muted-foreground">
+              {PRODUCTDETAILS.weight} kg
+            </dd>
+          </div>
+          <div className="bg-gray-50 p-4 rounded flex items-center space-x-3">
+            <dt className="font-medium">In Stock:</dt>
+            <dd className="font-medium text-muted-foreground">
+              {PRODUCTDETAILS.stock} units
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <Separator />
+      <section
+        className="space-y"
+        aria-labelledby="frequently-asked-questions-heading"
+      >
+        <h2
+          id="frequently-asked-questions-heading"
+          className="text-xl md:font-semibold md:text-2xl font-medium font-poppins"
+        >
+          Frequently Asked Questions
+        </h2>
         <FAQs />
+      </section>
 
-        {/* Customer Reviews */}
-        <section className="flex flex-col space-y-3">
-          <h2 className="headline-7 font-medium mt-3">Customer Reviews</h2>
-          {/* Overall Product Rating */}
-          <StarRating
-            rating={5}
-            numberOfReviews={11}
-            aria-label="Customer Reviews Rating"
-          />
+      <section className="space-y-4" aria-labelledby="customer-reviews-heading">
+        <h2
+          id="customer-reviews-heading"
+          className="text-xl md:font-semibold md:text-2xl font-medium font-poppins"
+        >
+          Customer Reviews
+        </h2>
 
-          {/* Review Input */}
-          <form>
-            <div className="p-1">
-              <div className="bg-white p-3 flex items-center justify-between border rounded-3xl group transition-all duration-300 ease-in-out hover:shadow-md focus-within:ring-2 focus-within:ring-primary">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  aria-label="Email for newsletter"
-                  className="flex-grow bg-transparent rounded-full ring-0 outline-none border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 px-4"
-                />
-                <Button
-                  type="submit"
-                  className="rounded-full aspect-square p-2 flex items-center justify-center group relative"
-                >
-                  <span className="sr-only">Subscribe</span>
-                  <MoveRight
-                    size={20}
-                    className="transition-transform duration-300 ease-in-out group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </Button>
-              </div>
-            </div>
-          </form>
-
-          {/* Customer Reviews Section */}
-          <section className="flex flex-col space-y-3 justify-center items-center">
-            {reviews.map((review, index) => (
+        <ul className="space-y-3">
+          {reviews.map((review, index) => (
+            <React.Fragment key={index}>
               <Review
                 key={index}
                 name={review.name}
                 rating={review.rating}
                 comment={review.comment}
               />
-            ))}
-          </section>
-        </section>
+              <Separator />
+            </React.Fragment>
+          ))}
+        </ul>
       </section>
     </div>
   );
@@ -238,27 +257,37 @@ const ProductDetailPage = () => {
 
 export default ProductDetailPage;
 
-interface Review {
+interface ReviewProps {
   name: string;
   rating: number;
   comment: string;
 }
-const Review = ({ name, rating, comment }: Review) => (
-  <article className="w-full flex space-x-4 p-4 border-b border-gray-200">
-    <figure className="flex-shrink-0">
-      <Avatar>
-        <AvatarImage alt={`Avatar of ${name}`} />
-        <AvatarFallback>{name.charAt(0)}</AvatarFallback>
-      </Avatar>
-    </figure>
-    <div className="flex flex-col space-y-2">
-      <header>
-        <h4 className="headline-7">{name}</h4>
-        <div className="flex" aria-label={`Rating: ${rating} out of 5 stars`}>
-          <StarRating rating={rating} />
-        </div>
-      </header>
-      <p className="text-wrap text-sm text-muted-foreground">{comment}</p>
+
+const Review = ({ name, rating, comment }: ReviewProps) => (
+  <li className="flex items-start space-x-4 p-3">
+    <Avatar className="w-10 h-10 flex-shrink-0">
+      <AvatarImage alt={`Avatar of ${name}`} />
+      <AvatarFallback className="bg-gray-100 text-gray-600 text-sm font-medium">
+        {name.charAt(0)}
+      </AvatarFallback>
+    </Avatar>
+    <div className="flex-1 min-w-0">
+      <div className="flex items-center justify-between mb-1">
+        <h3 className="font-medium truncate">{name}</h3>
+        {/* <span className="text-xs text-gray-500">{date}</span> */}
+      </div>
+      <div
+        className="flex items-center"
+        aria-label={`Rating: ${rating} out of 5 stars`}
+      >
+        <StarRating rating={rating} />
+        <span className="ml-2 font-medium text-gray-600">
+          {rating.toFixed(1)}
+        </span>
+      </div>
+      <p className="text-muted-foreground leading-relaxed line-clamp-3">
+        {comment}
+      </p>
     </div>
-  </article>
+  </li>
 );

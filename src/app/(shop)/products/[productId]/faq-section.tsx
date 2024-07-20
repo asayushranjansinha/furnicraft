@@ -7,25 +7,57 @@ import {
 
 export function FAQs() {
   return (
-    <Accordion type="single" collapsible className="lg:hidden w-full">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Additional Info</AccordionTrigger>
+    <Accordion
+      type="single"
+      collapsible
+      aria-label="frequently asked questions"
+    >
+      <AccordionItem value="faq-1">
+        <AccordionTrigger className="!text-start hover:no-underline">
+          Where are you located?
+        </AccordionTrigger>
         <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
+          We are located in Bokaro Steel City. Our showroom and office are open
+          from 9AM-6PM on Monday-Saturday.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Questions</AccordionTrigger>
+      <AccordionItem value="faq-2">
+        <AccordionTrigger className="!text-start hover:no-underline">
+          Can you create custom furniture based on my design?
+        </AccordionTrigger>
         <AccordionContent>
-          Yes. It comes with default styles that matches the other
-          components&apos; aesthetic.
+          Absolutely! We specialize in creating custom furniture tailored to
+          your specifications. Bring us your design or collaborate with our
+          designers to create your perfect piece.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-3">
-        <AccordionTrigger>Reviews(11)</AccordionTrigger>
+      <AccordionItem value="faq-3">
+        <AccordionTrigger className="!text-start hover:no-underline">
+          What payment methods do you accept?
+        </AccordionTrigger>
         <AccordionContent>
-          Yes. It&apos;s animated by default, but you can disable it if you
-          prefer.
+          We accept various payment methods including cash, credit/debit cards,
+          bank transfers, and popular online payment gateways.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="faq-4">
+        <AccordionTrigger className="!text-start hover:no-underline">
+          How can I contact customer support?
+        </AccordionTrigger>
+        <AccordionContent>
+          You can contact our customer support team at (+91)121231234 or
+          asayushranjansinha@gmail.com. We are available to assist you with any
+          queries or issues you may have.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="faq-5">
+        <AccordionTrigger className="!text-start hover:no-underline">
+          Are there any delivery charges?{" "}
+        </AccordionTrigger>
+        <AccordionContent>
+          Delivery charges depend on the location and size of the order. We
+          provide detailed information about any additional charges at the time
+          of checkout.
         </AccordionContent>
       </AccordionItem>
     </Accordion>

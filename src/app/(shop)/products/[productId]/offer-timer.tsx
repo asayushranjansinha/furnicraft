@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
 import "@leenguyen/react-flip-clock-countdown/dist/index.css";
+import { useEffect, useState } from "react";
 import "./offer-timer.css";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
 
 function OfferTimer() {
   const [mounted, setMounted] = useState(false);
@@ -13,12 +12,16 @@ function OfferTimer() {
   }, []);
 
   return (
-    <section
-      className="space-y-3 px-2"
+    <div
+      className="mt-auto space-y-4"
       aria-labelledby="offer-timer-heading"
       role="timer"
+      
     >
-      <h3 id="offer-timer-heading" className="headline-7 text-center py-2">
+      <h3
+        id="offer-timer-heading"
+        className="text-center text-xl font-medium font-poppins md:font-semibold"
+      >
         Offer expires in
       </h3>
       {mounted ? (
@@ -39,8 +42,7 @@ function OfferTimer() {
           <Skeleton className="h-16 w-16" />
         </div>
       )}
-      <Separator className="w-full" />
-    </section>
+    </div>
   );
 }
 
