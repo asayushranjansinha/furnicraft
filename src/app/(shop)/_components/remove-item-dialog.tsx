@@ -1,7 +1,6 @@
 "use client";
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Trash, X } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -11,28 +10,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Checkbox } from "@/components/ui/checkbox";
-import { CartItem } from "../cart/page";
+import { Trash } from "lucide-react";
+import React, { useState } from "react";
 
 interface RemoveItemDialogProps {
-  item: CartItem;
-  removeItem: (id: string) => void;
-  addToWishlist: (id: string) => void;
+  onRemoveItem: (addToWishlist: boolean) => void;
 }
 
 export const RemoveItemDialog: React.FC<RemoveItemDialogProps> = ({
-  item,
-  removeItem,
-  addToWishlist,
+  onRemoveItem: removeItem,
 }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [addToWishlistChecked, setAddToWishlistChecked] = useState(false);
 
   const handleRemove = () => {
-    if (addToWishlistChecked) {
-      addToWishlist(item.id);
-    }
-    removeItem(item.id);
+    removeItem(addToWishlistChecked);
     setIsDialogOpen(false);
   };
 
@@ -42,7 +34,6 @@ export const RemoveItemDialog: React.FC<RemoveItemDialogProps> = ({
         <Button
           variant="ghost"
           size="icon"
-          aria-label={`Remove ${item.name} from cart`}
           className="text-gray-400 hover:text-red-500 transition-colors"
         >
           <Trash className="h-5 w-5" />
@@ -50,7 +41,7 @@ export const RemoveItemDialog: React.FC<RemoveItemDialogProps> = ({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Remove Item from Cart</DialogTitle>
+          <DialogTitle>Remove from Cart</DialogTitle>
           <DialogDescription>
             Are you sure you want to remove this item from your cart?
           </DialogDescription>
@@ -59,7 +50,9 @@ export const RemoveItemDialog: React.FC<RemoveItemDialogProps> = ({
           <Checkbox
             id="add-to-wishlist"
             checked={addToWishlistChecked}
-            onCheckedChange={(checked) => setAddToWishlistChecked(checked as boolean)}
+            onCheckedChange={(checked) =>
+              setAddToWishlistChecked(checked as boolean)
+            }
           />
           <label
             htmlFor="add-to-wishlist"

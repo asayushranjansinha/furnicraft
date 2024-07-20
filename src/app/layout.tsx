@@ -4,6 +4,7 @@ import { monainn } from "@/assets/fonts";
 import { Space_Grotesk } from "next/font/google";
 
 import "./globals.css";
+import StoreProvider from "@/providers/store-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,12 +36,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className} ${monainn.variable} ${poppins.variable} ${space_grotesk.variable}`}
-      >
-        {children}
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body
+          className={`${inter.className} ${monainn.variable} ${poppins.variable} ${space_grotesk.variable}`}
+        >
+          {children}
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

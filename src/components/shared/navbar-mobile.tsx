@@ -17,10 +17,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { CartIconMobile } from "./cart-icon";
+import { WishlistIconMobile } from "./wishlist-icon";
 
 const NavbarMobile = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -98,60 +100,11 @@ const NavbarMobile = () => {
 
         {/* Secondary Navigation */}
         <div className="mt-auto pt-3 border-t">
-          <Link
-            href="/cart"
-            className="w-full flex items-center py-3 justify-between text-muted-foreground rounded-none"
-            aria-label="Shopping Cart"
-          >
-            <span
-              className={cn(
-                "mobile-navlink",
-                pathname === "/cart" && "text-black",
-                pathname.includes("/cart") && "text-black"
-              )}
-            >
-              Cart
-            </span>
-            <div className="flex space-x-1">
-              <ShoppingCart
-                size={24}
-                className="text-black"
-                strokeWidth="1px"
-              />
-              <div
-                className="bg-black text-white h-6 w-6 border rounded-full shrink-0 flex items-center justify-center font-bold"
-                aria-label="Cart Items Count"
-              >
-                2
-              </div>
-            </div>
-          </Link>
-          <Link
-            href="/wishlist"
-            className="w-full flex items-center py-3 justify-between text-muted-foreground rounded-none"
-            aria-label="Your wishlist"
-            role="button"
-          >
-            <span
-              className={cn(
-                "mobile-navlink",
-                pathname === "/wishlist" && "text-black",
-                pathname.includes("/wishlist") && "text-black"
-              )}
-            >
-              Wishlist
-            </span>
-            <div className="flex space-x-1">
-              <Heart size={24} className="text-black" strokeWidth="1px" />
-              <div
-                className="bg-black text-white h-6 w-6 border rounded-full shrink-0 flex items-center justify-center font-bold"
-                aria-label="Wishlist Items Count"
-              >
-                2
-              </div>
-            </div>
-          </Link>
-          <Button className="w-full mt-3">Sign In</Button>
+          <CartIconMobile />
+          <WishlistIconMobile />
+          <Button className="w-full mt-3" asChild>
+            <Link href={"/auth/signin"}>Sign In</Link>
+          </Button>
         </div>
       </SheetContent>
     </Sheet>

@@ -6,6 +6,7 @@ import {
   SortOption,
   Product,
   HeroCarouselItemTypes,
+  PromoCode,
 } from "@/types";
 import { GalleryVertical, Grid2X2, Grid3X3, Rows4 } from "lucide-react";
 
@@ -1435,3 +1436,89 @@ export const heroCarouselImages: HeroCarouselItemTypes[] = [
     altText: "Living room featuring a luxurious grey sofa set with a table",
   },
 ];
+
+export const PROMOCODES: PromoCode[] = [
+  { code: "SAVE10", discountRate: 10 },
+  { code: "WELCOME20", discountRate: 20 },
+  { code: "SUMMER30", discountRate: 30 },
+  { code: "FALL40", discountRate: 40 },
+  { code: "WINTER50", discountRate: 50 },
+  { code: "SPRING60", discountRate: 60 },
+  { code: "FIRSTBUY", discountRate: 10 },
+  { code: "FREESHIP", discountRate: 0 },
+  { code: "BUY1GET1", discountRate: 50 },
+  { code: "EXTRA15", discountRate: 15 },
+];
+
+export const PRODUCTDETAILS = {
+  id: 18,
+  name: "Tray Table",
+  price: 99.99,
+  description:
+    "Buy one or buy a few and make every space where you sit more convenient. Light and easy to move around with removable tray top, handy for serving snacks.",
+  category: "Furniture",
+  currentDiscount: 20,
+  brand: "ModernLiving",
+  stock: 25,
+  rating: 4.4,
+  images: [
+    "/assets/images/tray-table-1.jpg",
+    "/assets/images/tray-table-2.jpg",
+    "/assets/images/tray-table-3.jpg",
+    "/assets/images/tray-table-4.jpg",
+    "/assets/images/tray-table-5.jpg",
+    "/assets/images/tray-table-6.jpg",
+    "/assets/images/tray-table-7.jpg",
+    "/assets/images/tray-table-8.jpg",
+    "/assets/images/tray-table-9.jpg",
+    "/assets/images/tray-table-10.jpg",
+  ],
+  weight: 4,
+  sku: "LU-FL-018",
+  reviews: [
+    {
+      name: "Emily Thompson",
+      rating: 5,
+      comment:
+        "This product exceeded my expectations! It's exactly what I needed.",
+    },
+    {
+      name: "Priya Patel",
+      rating: 5,
+      comment: "यह उत्कृष्ट उत्पाद है! मैं इसे अपने दोस्तों को भी सुझाएंगी।",
+    },
+    {
+      name: "Michael Smith",
+      rating: 4,
+      comment:
+        "Very good quality and fast delivery. Impressed with the service!",
+    },
+    {
+      name: "Sophia Lee",
+      rating: 5,
+      comment:
+        "I love this product! It's made a huge difference in my daily routine.",
+    },
+    {
+      name: "David Johnson",
+      rating: 4,
+      comment: "Great value for the price. I would definitely buy it again.",
+    },
+    {
+      name: "Arun Kumar",
+      rating: 5,
+      comment:
+        "I am really happy with this purchase! It exceeded my expectations.",
+    },
+    {
+      name: "Meera Reddy",
+      rating: 4,
+      comment: "Great product for the price. It's been very useful for me.",
+    },
+    {
+      name: "Vikram Singh",
+      rating: 5,
+      comment: "Excellent service and product quality. I'm impressed!",
+    },
+  ],
+};

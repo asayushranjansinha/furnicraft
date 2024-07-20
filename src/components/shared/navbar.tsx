@@ -1,15 +1,16 @@
 "use client";
 
+import { Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, ShoppingBag, ShoppingCart, User } from "lucide-react";
 
 import Logo from "@/components/shared/logo";
-import { cn } from "@/lib/utils";
-import NavbarMobile from "./navbar-mobile";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
+import NavbarMobile from "./navbar-mobile";
 import UserProfile from "./user-profile";
+import { CartIcon } from "./cart-icon";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -97,27 +98,7 @@ const Navbar = () => {
             className="hidden md:block h-5"
           />
           <li id="nav-cart" role="none">
-            <Button
-              variant="ghost"
-              aria-label="Shopping Cart"
-              role="button"
-              asChild
-            >
-              <Link href={"/cart"} className="space-x-1">
-                <ShoppingCart
-                  size={24}
-                  className="text-black"
-                  strokeWidth="1px"
-                />
-                <div
-                  className="bg-black text-white h-6 w-6 border rounded-full shrink-0 flex items-center justify-center font-bold"
-                  aria-label="Cart Items Count"
-                >
-                  2
-                </div>
-                <span className="sr-only">2 items in the cart</span>
-              </Link>
-            </Button>
+            <CartIcon />
           </li>
         </ul>
       </div>

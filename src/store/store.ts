@@ -1,0 +1,15 @@
+import cartReducer from '@/store/cart-slice';
+import wishlistReducer from '@/store/wishlist-slice';
+import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+
+export const store = configureStore({
+    reducer: {
+        cart: cartReducer,
+        wishlist: wishlistReducer,
+    },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();

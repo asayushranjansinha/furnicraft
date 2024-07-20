@@ -69,3 +69,27 @@ export type HeroCarouselItemTypes = {
     link: string;
     altText: string;
 }
+
+export interface CartItem {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+    image: string;
+}
+
+export type PromoCode = {
+    code: string;
+    discountRate: number;
+};
+
+export interface WishlistItem {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    addedAt: string;
+    category: string;
+    currentDiscount: number;
+    brand: string;
+}

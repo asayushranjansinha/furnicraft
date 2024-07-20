@@ -1,8 +1,8 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import Navbar from "@/components/shared/navbar";
+import { ProductsViewProvider } from "@/contexts/product-view-context";
 import { ReactNode } from "react";
 import Footer from "../_components/footer";
-import { ProductsViewProvider } from "@/contexts/product-view-context";
 
 interface ShopGroupLayoutProps {
   children: ReactNode;
