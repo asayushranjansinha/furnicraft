@@ -1,12 +1,12 @@
 "use client";
-import { ProductListViewNameEnum } from "@/types";
+import { useView } from "@/contexts/product-view-context";
 import { useCallback, useEffect, useRef, useState } from "react";
 import StickyBox from "react-sticky-box";
 import ShopBanner from "../_components/banner";
 import ProductList from "../_components/product-list";
 import ProductListControls from "../_components/product-list-controls";
 
-const CheckoutPage = () => {
+const ProductPage = () => {
   const [headerHeight, setHeaderHeight] = useState<number | null>(null);
   const [stickyState, setStickyState] = useState<
     "normal" | "sticky" | "hidden"
@@ -14,9 +14,7 @@ const CheckoutPage = () => {
   const lastScrollY = useRef<number>(0);
   const stickyRef = useRef<HTMLDivElement | null>(null);
   const rafId = useRef<number | null>(null);
-  const [currentView, setCurrentView] = useState<ProductListViewNameEnum>(
-    ProductListViewNameEnum.GridView
-  );
+  const { currentView, setCurrentView } = useView();
 
   useEffect(() => {
     const header = document.getElementById("shop-header");
@@ -93,4 +91,4 @@ const CheckoutPage = () => {
   );
 };
 
-export default CheckoutPage;
+export default ProductPage;

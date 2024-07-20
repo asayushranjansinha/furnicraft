@@ -55,16 +55,16 @@ const ProductList = ({
                     )}
                   </div>
                   <CardContent className="p-3 flex flex-col flex-grow">
-                    <h3 className="text-lg font-semibold line-clamp-2 mb-2">
+                    <h3 className="text-lg font-semibold mb-2 line-clamp-2">
                       {product.name}
                     </h3>
                     <div className="flex items-center justify-between mb-2 mt-auto">
-                      <div className="flex flex-col items-center">
-                        <span className="ml-0 font-bold text-primary text-base">
+                      <div className="flex flex-col items-start">
+                        <span className="text-lg font-medium font-poppins">
                           ${newPrice.toFixed(2)}
                         </span>
                         {product.currentDiscount > 0 && (
-                          <span className="font-medium text-muted-foreground line-through ml-2 text-sm">
+                          <span className="text-sm font-poppins text-muted-foreground line-through">
                             ${product.price.toFixed(2)}
                           </span>
                         )}

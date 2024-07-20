@@ -25,9 +25,9 @@ const ProductListControls: React.FC<ProductListControlProps> = ({
 }) => {
   return (
     <section aria-labelledby="product-list-controls" id="product-list-controls">
-      <div className="flex items-end justify-between">
+      <div className="flex flex-col space-y-4 sm:flex-row sm:items-end sm:justify-between">
         <div
-          className="hidden sm:flex items-end gap-x-3"
+          className="hidden sm:block"
           aria-label="Category filters"
           id="category-filters"
         >
@@ -35,7 +35,7 @@ const ProductListControls: React.FC<ProductListControlProps> = ({
         </div>
 
         <div
-          className="flex items-end justify-between gap-x-3"
+          className="flex justify-between sm:justify-end items-center space-x-3"
           aria-label="Sorting and view options"
           id="sorting-and-view-options"
         >
@@ -59,7 +59,7 @@ interface ViewOptionsProps {
 const ViewOptions: React.FC<ViewOptionsProps> = ({ selected, onSelect }) => {
   return (
     <div
-      className="flex items-center gap-2 ml-auto"
+      className="flex items-center gap-1"
       role="group"
       aria-label="View options"
     >
@@ -74,6 +74,28 @@ const ViewOptions: React.FC<ViewOptionsProps> = ({ selected, onSelect }) => {
             variant={buttonVariant}
             aria-label={option.name}
             aria-pressed={isSelected}
+            className={`
+              ${
+                option.name === ProductListViewNameEnum.GridView
+                  ? "sm:hidden lg:inline-flex"
+                  : ""
+              }
+              ${
+                option.name === ProductListViewNameEnum.CompactView
+                  ? "hidden sm:inline-flex"
+                  : ""
+              }
+              ${
+                option.name === ProductListViewNameEnum.ListView
+                  ? "hidden lg:inline-flex"
+                  : ""
+              }
+              ${
+                option.name === ProductListViewNameEnum.DetailedView
+                  ? "inline-flex"
+                  : ""
+              }
+            `}
           >
             <span className="sr-only">{option.name}</span>
             {option.icon}
@@ -94,7 +116,7 @@ const CategorySelect = () => {
         <SelectTrigger id="category-select" className="">
           <SelectValue placeholder="Select category" />
         </SelectTrigger>
-        <SelectContent side="bottom">
+        <SelectContent side="bottom" className="w-[180px]">
           {productCategories.map((option) => (
             <SelectItem key={option.value} value={option.value}>
               {option.label}

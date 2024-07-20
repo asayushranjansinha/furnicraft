@@ -7,47 +7,24 @@ import {
   Product,
   HeroCarouselItemTypes,
 } from "@/types";
+import { GalleryVertical, Grid2X2, Grid3X3, Rows4 } from "lucide-react";
 
 export const productListViewOptions: ProductListViewOptionType[] = [
   {
     name: ProductListViewNameEnum.GridView,
-    icon: (
-      <img
-        src="assets/svg/grid-icon.svg"
-        alt="Grid view icon"
-        className="w-5 h-5"
-      />
-    ),
+    icon: <Grid3X3 strokeWidth="1px" aria-hidden />,
   },
   {
     name: ProductListViewNameEnum.CompactView,
-    icon: (
-      <img
-        src="assets/svg/compact-icon.svg"
-        alt="Compact view icon"
-        className="w-5 h-5"
-      />
-    ),
+    icon: <Grid2X2 strokeWidth="1px" aria-hidden />,
   },
   {
     name: ProductListViewNameEnum.ListView,
-    icon: (
-      <img
-        src="assets/svg/list-icon.svg"
-        alt="List view icon"
-        className="w-5 h-5"
-      />
-    ),
+    icon: <Rows4 strokeWidth="1px" aria-hidden />,
   },
   {
     name: ProductListViewNameEnum.DetailedView,
-    icon: (
-      <img
-        src="assets/svg/detailed-icon.svg"
-        alt="Detailed view icon"
-        className="w-5 h-5"
-      />
-    ),
+    icon: <GalleryVertical strokeWidth="1px" aria-hidden />,
   },
 ];
 
@@ -1387,7 +1364,7 @@ export const mockProducts: Product[] = [
   },
 ];
 
-export const heroCarouselImages:HeroCarouselItemTypes[] = [
+export const heroCarouselImages: HeroCarouselItemTypes[] = [
   {
     id: 1,
     imageSrcLarge: "/assets/images/hero-carousel-1-1280x896.jpg",

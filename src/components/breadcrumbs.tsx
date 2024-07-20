@@ -12,9 +12,9 @@ import {
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb";
+import Link from "next/link";
 
 const MAX_VISIBLE_SEGMENTS = 4;
-
 
 const Breadcrumbs: React.FC = () => {
   const pathname = usePathname();
@@ -61,7 +61,9 @@ const Breadcrumbs: React.FC = () => {
           {isLast ? (
             <BreadcrumbPage>{title}</BreadcrumbPage>
           ) : (
-            <BreadcrumbLink href={href}>{title}</BreadcrumbLink>
+            <BreadcrumbLink asChild>
+              <Link href={href}>{title}</Link>
+            </BreadcrumbLink>
           )}
         </BreadcrumbItem>
         {!isLast && <BreadcrumbSeparator />}
@@ -74,9 +76,11 @@ const Breadcrumbs: React.FC = () => {
       <Breadcrumb className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-3 lg:py-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/" className="flex items-center">
-              <Home className="h-4 w-4 mr-2 " strokeWidth={"2px"} />
-              Home
+            <BreadcrumbLink asChild>
+              <Link href="/" className="flex items-center">
+                <Home className="h-4 w-4 mr-2 " strokeWidth={"2px"} />
+                Home
+              </Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
