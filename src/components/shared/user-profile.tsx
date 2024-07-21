@@ -11,19 +11,19 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ShoppingBag, User } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 const UserProfile: React.FC = () => {
   const router = useRouter();
 
-  const handleProfileShortcut = () => {
+  const handleProfileShortcut = useCallback(() => {
     // Navigate to profile page or open profile modal
     console.log("Profile shortcut activated");
-  };
+  }, []);
 
-  const handleWishlistShortcut = () => {
+  const handleWishlistShortcut = useCallback(() => {
     router.push("/wishlist");
-  };
+  }, [router]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -44,7 +44,7 @@ const UserProfile: React.FC = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleWishlistShortcut]);
+  }, [handleWishlistShortcut, handleProfileShortcut]);
 
   return (
     <DropdownMenu>
