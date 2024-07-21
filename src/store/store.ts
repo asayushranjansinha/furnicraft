@@ -26,7 +26,7 @@ export const makeStore = () => {
     const persistConfig = {
       key: 'root',
       storage,
-      whitelist: ['cart','wishlist'], // Only persist cart
+      whitelist: ['cart','wishlist'],
     };
     const persistedReducer = persistReducer(persistConfig, rootReducer);
     const store = makeConfiguredStore(persistedReducer);
