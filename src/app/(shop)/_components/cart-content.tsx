@@ -6,10 +6,12 @@ import {
   selectCartItems,
   updateQuantity,
 } from "@/store/cart-slice";
+import { moveToWishlistThunk } from "@/store/cart-thunk";
+import { useAppDispatch } from "@/store/store";
 import { CartItem as CartItemType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { QuantityControl } from "./quantity-control";
 import { RemoveItemDialog } from "./remove-item-dialog";
 
@@ -47,7 +49,7 @@ type CartItemProp = {
   item: CartItemType;
 };
 const CartItem: React.FC<CartItemProp> = ({ item }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   function handleUpdateQuantity(quantity: number) {
     let updatedQty = {
@@ -57,8 +59,11 @@ const CartItem: React.FC<CartItemProp> = ({ item }) => {
     dispatch(updateQuantity(updatedQty));
   }
   function handleRemoveFromCart(addToWishlist: boolean = false) {
-    dispatch(removeFromCart(item.id));
-    if (addToWishlist) console.log("Added to wishlist");
+    if (addToWishlist) {
+      dispatch(moveToWishlistThunk(item.id));
+    } else {
+      dispatch(removeFromCart(item.id));
+    }
   }
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

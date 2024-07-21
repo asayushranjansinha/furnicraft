@@ -43,6 +43,10 @@ const cartSlice = createSlice({
     },
     clearCart: (state) => {
       state.items = [];
+    },
+    moveToWishlist: (state, action: PayloadAction<number>) => {
+      // This action doesn't modify the Cart state
+      // It will be used in a thunk to move an item to the wishlist
     }
   },
 });
