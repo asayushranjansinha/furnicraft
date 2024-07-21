@@ -8,7 +8,7 @@ import {
   selectWishlistItems,
 } from "@/store/wishlist-slice";
 import { moveToCartThunk } from "@/store/wishlist-thunk";
-import { WishlistItem } from "@/types";
+import { WishlistItem as WishlistItemType } from "@/types";
 import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,7 +46,7 @@ const WishlistContent = () => {
 export default WishlistContent;
 
 type WishlistItemProp = {
-  item: WishlistItem;
+  item: WishlistItemType;
 };
 
 const WishlistItem: React.FC<WishlistItemProp> = ({ item }) => {
@@ -99,7 +99,7 @@ const WishlistItemImage: React.FC<WishlistItemImageProp> = ({
   );
 };
 
-const WishlistItemDetails: React.FC<Omit<WishlistItem, "addedAt" | "image">> = (
+const WishlistItemDetails: React.FC<Omit<WishlistItemType, "addedAt" | "image">> = (
   item
 ) => {
   const discountedPrice = item.price * (1 - item.currentDiscount / 100);

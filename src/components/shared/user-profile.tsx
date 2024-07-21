@@ -44,7 +44,7 @@ const UserProfile: React.FC = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [handleWishlistShortcut]);
 
   return (
     <DropdownMenu>

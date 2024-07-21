@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Product, Review } from "@/types";
+import { Product, Review as ReviewType } from "@/types";
 import "@leenguyen/react-flip-clock-countdown/dist/index.css";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import React from "react";
@@ -155,7 +155,7 @@ const FAQSection = () => (
   </section>
 );
 
-const ReviewSection = ({ reviews }: { reviews: Review[] }) => (
+const ReviewSection = ({ reviews }: { reviews: ReviewType[] }) => (
   <section className="space-y-4" aria-labelledby="customer-reviews-heading">
     <h2
       id="customer-reviews-heading"
