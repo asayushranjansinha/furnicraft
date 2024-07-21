@@ -36,14 +36,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <StoreProvider>
-      <html lang="en">
-        <body
-          className={`${inter.className} ${monainn.variable} ${poppins.variable} ${space_grotesk.variable}`}
-        >
-          {children}
-        </body>
-      </html>
-    </StoreProvider>
+    <html lang="en">
+      <body
+        className={`${inter.className} ${monainn.variable} ${poppins.variable} ${space_grotesk.variable}`}
+      >
+        <StoreProvider>{children}</StoreProvider>
+      </body>
+    </html>
   );
 }
